@@ -1,0 +1,39 @@
+{
+  // List of extensions which should be recommended for users of this workspace.
+  // vscode prompts to install all of these for the first time project is opened.
+  // Otherwise, see https://code.visualstudio.com/docs/editor/extension-marketplace#_workspace-recommended-extensions
+  "recommendations": [
+    "VisualStudioExptTeam.intellicode-api-usage-examples",
+    "xabikos.JavaScriptSnippets",
+
+    // Functionality
+    "oderwat.indent-rainbow",
+    "wix.vscode-import-cost",
+    "naumovs.color-highlight",
+    "adpyke.codesnap",
+    "ritwickdey.LiveServer",
+    "usernamehw.errorlens",
+    "alefragnani.Bookmarks",
+    "formulahendry.auto-close-tag",
+    "kisstkondoros.vscode-codemetrics",
+    "formulahendry.auto-rename-tag",
+    "shd101wyy.markdown-preview-enhanced",
+
+    // type-checkers
+    "rvest.vs-code-prettier-eslint",
+    "dbaeumer.vscode-eslint",
+    "streetsidesoftware.code-spell-checker",
+
+    // auto-complete
+    "bradlc.vscode-tailwindcss",
+    "christian-kohler.npm-intellisense",
+    "Zignd.html-css-class-completion",
+    "ecmel.vscode-html-css",
+
+    // UI
+    "PKief.material-icon-theme",
+    "liviuschera.noctis",
+    "esbenp.prettier-vscode",
+    "enkia.tokyo-night"
+  ]
+}

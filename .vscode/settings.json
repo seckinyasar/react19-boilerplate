@@ -1,0 +1,197 @@
+{
+  "[python]": {
+    "editor.formatOnType": true
+  },
+
+  "liveServer.settings.donotShowInfoMsg": true,
+
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
+
+  "terminal.integrated.cwd": "",
+
+  "terminal.external.windowsExec": "",
+
+  "terminal.integrated.defaultProfile.osx": "",
+
+  "redhat.telemetry.enabled": false,
+
+  "workbench.editor.empty.hint": "hidden",
+
+  "editor.codeActionsOnSave": {},
+
+  "indentRainbow.colorOnWhiteSpaceOnly": false,
+
+  "indentRainbow.indicatorStyle": "light", // we use a simple 1 pixel wide line
+
+  "indentRainbow.lightIndicatorStyleLineWidth": 1, // the same colors as above but more visible
+
+  "indentRainbow.colors": [
+    "rgba(252, 3, 248,0.1)",
+
+    "rgba(235, 252, 3,0.3)",
+
+    "rgba(112, 166, 204,0.6)",
+
+    "rgba(79,236,236,0.9)"
+  ],
+
+  "indentRainbow.errorColor": "rgba(128,32,32,0.6)",
+
+  "indentRainbow.tabmixColor": "rgba(128,32,96,0.6)",
+
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "eslint.options": {
+    "vue/max-attributes-per-line": ["off"]
+  },
+
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+
+  "files.exclude": {
+    "**/node_modules": true
+  },
+
+  "javascript.updateImportsOnFileMove.enabled": "never",
+
+  "files.associations": {
+    ".css": "tailwindcss"
+  },
+
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "editor.formatOnType": false, // required
+
+  "editor.formatOnPaste": true, // optional
+
+  "editor.formatOnSave": true, // optional
+
+  "editor.formatOnSaveMode": "file", // required to format on save
+
+  "files.autoSave": "onFocusChange", // optional but recommended
+
+  "vs-code-prettier-eslint.prettierLast": false,
+
+  "editor.minimap.enabled": false,
+
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+
+  "git.enableSmartCommit": true,
+
+  "git.openRepositoryInParentFolders": "never",
+
+  "github.copilot.editor.enableAutoCompletions": true,
+
+  "workbench.tree.indent": 24,
+
+  "gitlens.views.commitDetails.files.layout": "list",
+
+  "editor.codeLensFontSize": 12,
+
+  "editor.codeLensFontFamily": "FiraCode",
+
+  "diffEditor.codeLens": true,
+
+  "typescript.referencesCodeLens.enabled": true,
+
+  "javascript.referencesCodeLens.enabled": true,
+
+  "explorer.compactFolders": false,
+
+  "gitlens.hovers.avatarSize": 10,
+
+  "gitlens.hovers.enabled": false,
+
+  "editor.tokenColorCustomizations": {
+    "[Noctis Obscuro]": {
+      "strings": "#b5b5b5"
+    },
+
+    "textMateRules": [
+      {
+        "scope": "entity.name.tag", // HTML etiket isimleri
+
+        "settings": {
+          "foreground": "#3c75c0",
+
+          "fontStyle": "bold"
+        }
+      }
+    ]
+  },
+
+  "editor.cursorBlinking": "smooth",
+
+  "workbench.iconTheme": "material-icon-theme",
+
+  "material-icon-theme.activeIconPack": "react",
+
+  "material-icon-theme.hidesExplorerArrows": true,
+
+  "material-icon-theme.opacity": 0.6,
+
+  "editor.semanticTokenColorCustomizations": {
+    "enabled": true
+  },
+
+  "workbench.editorAssociations": {
+    "*.ttf": "default"
+  },
+
+  "search.exclude": {
+    "**/node_modules": false
+  },
+
+  "github.copilot.enable": {
+    "*": false,
+
+    "plaintext": false,
+
+    "markdown": false,
+
+    "scminput": false
+  },
+
+  "typescript.updateImportsOnFileMove.enabled": "always",
+
+  "cSpell.dictionaryDefinitions": [],
+
+  "prettier.bracketSameLine": true,
+
+  "prettier.printWidth": 120,
+
+  "editor.cursorStyle": "block",
+
+  "editor.wordWrap": "on",
+
+  "editor.autoClosingBrackets": "always",
+
+  "editor.autoClosingQuotes": "always",
+
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+
+  "workbench.colorTheme": "Noctis Obscuro",
+
+  "editor.fontFamily": "FiraCode",
+  "[jsonc]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "cSpell.enabledFileTypes": {
+    "typescriptreact": false,
+    "css": false,
+    "javascript": false
+  }
+}
