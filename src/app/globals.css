@@ -15,6 +15,9 @@
   --color-border: var(--border);
   --color-input: var(--input);
 
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-accent-foreground: var(--accent-foreground);
@@ -94,12 +97,15 @@
   --foreground: oklch(0.145 0 0);
   --primary: oklch(0 0 none);
   --secondary: oklch(0.97 0 0);
-
   --destructive: oklch(0.57 0.1938 25.61);
+
   --accent: oklch(0.8 0 none);
   --ring: oklch(0.56 0.131 250.19);
   --border: oklch(0.25 0 0);
   --input: oklch(0.45 0 0);
+
+  --popover: oklch(0 0 none);
+  --popover-foreground: oklch(0 0 none);
 
   --primary-foreground: oklch(1 0 none);
   --secondary-foreground: oklch(0.44 0 none);
@@ -113,10 +119,14 @@
   --primary: oklch(0.922 0 0);
   --secondary: oklch(0.269 0 0);
   --destructive: oklch(0.57 0.1938 25.61);
+
   --accent: oklch(1 0 0);
   --ring: oklch(0.56 0.1072 249.24);
   --border: oklch(0.25 0 0);
   --input: oklch(0.45 0 0);
+
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: var(--color-foreground);
 
   --primary-foreground: oklch(0 0 none);
   --secondary-foreground: oklch(0.81 0 none);
