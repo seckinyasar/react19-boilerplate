@@ -18,13 +18,13 @@ const ThemeToggle: React.FC = () => {
       {theme === "dark" ? (
         <Moon
           className={
-            "w-6 h-6 bg-background rounded-full stroke-active-svg p-0.5"
+            "size-6 bg-background rounded-full stroke-active-svg p-0.5"
           }
         />
       ) : (
         <SunMedium
           className={
-            "w-6 h-6 bg-background rounded-full stroke-active-svg p-0.5"
+            "size-6 bg-background rounded-full stroke-active-svg p-0.5"
           }
         />
       )}
