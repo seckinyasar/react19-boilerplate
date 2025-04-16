@@ -13,7 +13,6 @@ import { toast } from "sonner";
 export default function Home() {
   return (
     <div className="flex w-full min-h-screen justify-center bg-background text-foreground pb-20">
-      <ThemeSwitcher />
       <div className="flex justify-center w-[1200px] h-fit mt-20 rounded-[10px]">
         <div className="flex flex-col gap-y-10 ">
           {/* //! Buttons */}

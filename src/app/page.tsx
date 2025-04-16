@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui";
 import { buttonVariants } from "@/components/ui/button";
-import { Component } from "lucide-react";
+import { Component, FilePenLine } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
@@ -18,7 +18,12 @@ export default function Home() {
               Elements
               <Component className="size-3.5 ml-2" />
             </Link>
-            <Button variant="outline">Forms</Button>
+            <Link
+              className={buttonVariants({ variant: "outline" })}
+              href="/forms">
+              Elements
+              <FilePenLine className="size-3.5 ml-2" />
+            </Link>
           </div>
         </div>
       </div>

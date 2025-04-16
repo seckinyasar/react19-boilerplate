@@ -14,6 +14,9 @@
  * @override => width => default full.
  * @override => Placeholder => default is defined on @see defaultPlaceholders
  *
+ *
+ * @params => type , width , placeholder
+ *
  */
 //#endregion
 
@@ -43,7 +46,7 @@ function Input({
     type === "password" ? (show ? "text" : "password") : type;
 
   return (
-    <div className="relative w-fit">
+    <div className="relative w-full">
       <input
         type={effectiveType}
         data-slot="input"
@@ -69,6 +72,7 @@ function Input({
       />
       {type === "password" && (
         <Button
+          type="button"
           onClick={() => setShow(!show)}
           className="absolute right-1 top-1/2 -translate-y-1/2"
           size="icon"
