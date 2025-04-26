@@ -1,5 +1,4 @@
 "use client";
-import ThemeSwitcher from "@/components/themeSwitcher";
 import {
   Accordion,
   Breadcrumb,

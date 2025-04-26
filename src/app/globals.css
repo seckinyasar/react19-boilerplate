@@ -110,6 +110,8 @@
   --primary-foreground: oklch(1 0 none);
   --secondary-foreground: oklch(0.44 0 none);
   --accent-foreground: oklch(1 0 0);
+  --muted-foreground: oklch(0.88 0 none);
+  /* TEXT */
   --text-muted-foreground: oklch(0.81 0 none);
 }
 
@@ -131,6 +133,9 @@
   --primary-foreground: oklch(0 0 none);
   --secondary-foreground: oklch(0.81 0 none);
   --accent-foreground: oklch(1 0 0);
+  --muted-foreground: oklch(0.75 0 none);
+  /* TEXT */
+
   --text-muted-foreground: oklch(0.88 0 none);
 }
 

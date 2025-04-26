@@ -28,18 +28,19 @@ export default function Page() {
   return (
     <div className="flex w-full min-h-screen justify-center bg-background text-foreground pb-20">
       <div className="flex justify-center w-[600px] h-fit mt-40">
-        <Tabs.Tabs defaultValue="login" className="w-[400px] items-center  ">
+        <Tabs.Tabs defaultValue="login" className="w-[400px] items-center">
           <Tabs.TabsList>
             <Tabs.TabsTrigger value="login">Login</Tabs.TabsTrigger>
             <Tabs.TabsTrigger value="register">Register</Tabs.TabsTrigger>
           </Tabs.TabsList>
+          {/* //* LOGIN */}
           <Tabs.TabsContent
             value="login"
-            className="border border-border rounded-lg">
+            className="border border-border rounded-lg p-8">
             <form
               onSubmit={(e) => onSubmitHandler(e)}
-              className="flex flex-col w-full h-fit p-8 gap-y-2">
-              <h3 className="text-base font-semibold">Login to your Account</h3>
+              className="flex flex-col w-full h-fit gap-y-2">
+              <h3 className="text-base font-semibold">Login to your account</h3>
               <p className="text-md font-light opacity-85 pb-8">
                 Welcome, nice to see you here again.{" "}
               </p>
@@ -49,10 +50,28 @@ export default function Page() {
                 <Input placeholder="Password" type="password" name="password" />
                 {error && <span>{error.password}</span>}
               </div>
-              <Button type="submit">Login</Button>
+              <Button type="submit">Log in</Button>
             </form>
           </Tabs.TabsContent>
-          <Tabs.TabsContent value="register"></Tabs.TabsContent>
+          {/* //* REGISTER */}
+          <Tabs.TabsContent
+            value="register"
+            className="border border-border rounded-lg p-8">
+            <form className="flex flex-col w-full h-fit gap-y-2">
+              <h3 className="text-base font-semibold">Create your account</h3>
+              <p className="text-md font-light opacity-85 pb-8">
+                Get started by registering today.{" "}
+              </p>
+              <div className="flex flex-col gap-y-4 pb-6">
+                <Input placeholder="Name" name="email" />
+                <Input placeholder="Surname" name="email" />
+                <Input placeholder="Email Address" name="email" />
+                <Input placeholder="Password" type="password" name="password" />
+
+                <Button>Register</Button>
+              </div>
+            </form>
+          </Tabs.TabsContent>
         </Tabs.Tabs>
       </div>
     </div>

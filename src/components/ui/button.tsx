@@ -54,7 +54,7 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/40",
         ghost: "hover:bg-border/20 hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        onlyIcon: "bg-transparent items-center justify-center",
+        onlyIcon: "bg-transparent items-center justify-center ",
       },
       size: {
         default: "h-9 px-4 has-[>svg]:px-3 ",
