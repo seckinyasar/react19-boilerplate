@@ -81,9 +81,9 @@ export default function Home() {
           {/* //! Inputs */}
           <section className="flex flex-col gap-6 border border-border p-6 rounded-xl">
             <h2 className="text-[12.8px]">Inputs</h2>
-            <div className="flex flex-col items-center gap-6 w-full">
-              <Input type="email" className="w-[320px]" />
-              <Input type="password" className="w-[320px]" />
+            <div className="flex flex-col self-center gap-6 max-w-[320px]">
+              <Input type="email" />
+              <Input type="password" />
               <Input type="file" />
             </div>
           </section>
