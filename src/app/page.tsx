@@ -1,14 +1,14 @@
 "use client";
 
 import { buttonVariants } from "@/components/ui/button";
-import { Component, FilePenLine } from "lucide-react";
+import { Component, FilePenLine, Library } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex w-full min-h-screen justify-center bg-background text-foreground pb-20">
+    <div className="flex w-full min-h-screen justify-center bg-background text-foreground py-20">
       {/* //* container_Inner */}
-      <div className="flex flex-col gap-y-2 mt-20 w-fit">
+      <div className="flex flex-col gap-y-2 w-fit">
         <div className="flex flex-col p-10 border border-border space-y-6 rounded-t-4xl rounded-b-sm">
           <h2 className="text-base ">Components</h2>
           <div className="space-x-10">
@@ -41,7 +41,17 @@ export default function Home() {
         </div>
 
         {/* //* Framer Motion  */}
-        <div className="flex flex-col "></div>
+        <div className="flex flex-col gap-y-6 border border-border p-10 rounded-sm">
+          <h2 className="text-base">Motion Dev</h2>
+          <div className="space-x-10">
+            <Link
+              className={buttonVariants({ variant: "outline" })}
+              href="/motion">
+              Motion
+              <Library className="size-3.5 ml-2" />
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

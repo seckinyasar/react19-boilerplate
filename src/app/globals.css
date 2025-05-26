@@ -111,6 +111,7 @@
   --secondary-foreground: oklch(0.44 0 none);
   --accent-foreground: oklch(1 0 0);
   --muted-foreground: oklch(0.88 0 none);
+
   /* TEXT */
   --text-muted-foreground: oklch(0.81 0 none);
 }
@@ -134,29 +135,22 @@
   --secondary-foreground: oklch(0.81 0 none);
   --accent-foreground: oklch(1 0 0);
   --muted-foreground: oklch(0.75 0 none);
-  /* TEXT */
 
+  /* TEXT */
   --text-muted-foreground: oklch(0.88 0 none);
 }
 
-/* 
-Silver Like
-bg-clip-text bg-gradient-to-t from-test21 via-test20 to-test20
-    --color-test20: #d6c5f0;
-    --color-test21: #363b4e;
+.container-center {
+  @apply flex w-full max-w-[1280px];
+}
 
----------------------------------------------------------------------------------------------------------
-Dark Silver
-bg-clip-text bg-gradient-to-t from-test21 via-test21 to-test20
-    --color-test21: #363b4e;
-    --color-test20: #d6c5f0;
+/*? Tailwind V4 Code Samples */
 
----------------------------------------------------------------------------------------------------------
-Compatible with RADAR Purple
-bg-gradient-to-t from-test21 via-test10 to-test20
-    --color-test10: #916bbf;
-    --color-test20: #d6c5f0;
-*/
-
+/** Variants */
 /* @custom-variant dark (&:is(.dark *)); */
 /* @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *)); */
+
+/*? Use @utility to override default values.  */
+/* @utility tab-4 {
+  tab-size: 4;
+} */
