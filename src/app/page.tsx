@@ -1,7 +1,7 @@
 "use client";
 
-import { buttonVariants } from "@/components/ui/button";
-import { Component, FilePenLine, Library } from "lucide-react";
+import { buttonVariants } from "@/components/ui/Button";
+import { Component, Cuboid, FilePenLine, Library } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
@@ -14,13 +14,15 @@ export default function Home() {
           <div className="space-x-10">
             <Link
               className={buttonVariants({ variant: "outline" })}
-              href="/elements">
+              href="/elements"
+            >
               Elements
               <Component className="size-3.5 ml-2" />
             </Link>
             <Link
               className={buttonVariants({ variant: "outline" })}
-              href="/forms">
+              href="/forms"
+            >
               Login / Register Form
               <FilePenLine className="size-3.5 ml-2" />
             </Link>
@@ -33,7 +35,8 @@ export default function Home() {
           <div className="space-x-10">
             <Link
               className={buttonVariants({ variant: "outline" })}
-              href="/reactflow">
+              href="/reactflow"
+            >
               Reactflow
               <FilePenLine className="size-3.5 ml-2" />
             </Link>
@@ -42,13 +45,26 @@ export default function Home() {
 
         {/* //* Framer Motion  */}
         <div className="flex flex-col gap-y-6 border border-border p-10 rounded-sm">
-          <h2 className="text-base">Motion Dev</h2>
-          <div className="space-x-10">
+          <h2 className="flex items-center text-base">
+            Motion Dev
+            <Library className="size-3.5 ml-2" />
+          </h2>
+          <div>
             <Link
               className={buttonVariants({ variant: "outline" })}
-              href="/motion">
-              Motion
-              <Library className="size-3.5 ml-2" />
+              href="/motion/scrollwithtoc"
+            >
+              Scroll Animation with Table of Contents
+              <Cuboid className="size-3.5 ml-2" />
+            </Link>
+          </div>
+          <div>
+            <Link
+              className={buttonVariants({ variant: "outline" })}
+              href="/motion/usescroll"
+            >
+              useScroll Hook Usage
+              <Cuboid className="size-3.5 ml-2" />
             </Link>
           </div>
         </div>

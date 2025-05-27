@@ -1,13 +1,7 @@
 "use client";
-import { Button } from "@/components/ui";
-import { motion, useScroll } from "motion/react";
 import TableOfContents from "@/components/widgets/TableOfContents";
+import { motion } from "motion/react";
 export default function Page() {
-  const { scrollYProgress, scrollY } = useScroll();
-
-  //? power a button with motion.
-  const ButtonMotion = motion(Button);
-
   const contents = [
     { text: "Scroll Animation", id: "Article 1" },
     { text: "First Example ", id: "Article 2" },

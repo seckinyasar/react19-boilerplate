@@ -4,10 +4,9 @@ import { useEffect, useState } from "react";
 interface TableOfContentsProps {
   list: { id: string; text: string }[];
 }
-
 const TableOfContents = ({ list }: TableOfContentsProps) => {
   const [activeIndex, setActiveIndex] = useState("");
-
+  //#region //* Functions
   //? tracking active index
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -39,11 +38,12 @@ const TableOfContents = ({ list }: TableOfContentsProps) => {
         behavior: "smooth",
         block: "start",
       });
-      // setActiveIndex(id);
     } else {
       alert("there is no element");
     }
   };
+
+  //#endregion
 
   return (
     <div className="fixed right-60 top-40">

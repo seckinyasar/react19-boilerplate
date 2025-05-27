@@ -24,7 +24,7 @@
 import { cn } from "@/lib/utils";
 import { Eye, EyeClosed } from "lucide-react";
 import * as React from "react";
-import { Button } from "./button";
+import { Button } from "./Button";
 
 function Input({
   className,
@@ -78,7 +78,8 @@ function Input({
           onClick={() => setShow(!show)}
           className="absolute right-1 top-1/2 -translate-y-1/2"
           size="icon"
-          variant="onlyIcon">
+          variant="onlyIcon"
+        >
           {!show ? (
             <Eye className="size-5 stroke-muted-foreground group-focus-within:stroke-foreground " />
           ) : (
