@@ -17,14 +17,12 @@ const ProgressBar = ({ value, className }: ProgressBarProps) => {
       className={cn("w-full h-1 rounded-full overflow-hidden", className)}
     >
       <motion.div
-        className="flex w-full h-full bg-blue-500  "
-        // style={{ width: `${percentage}%` }}
+        className="flex w-full h-full bg-blue-500"
         style={{ scaleX: value, transformOrigin: "left" }}
       />
     </motion.div>
   );
 };
-
 export default ProgressBar;
 
 //? used motion.div to use value as it is, without any manipulation. Otherwise, it is not working.
