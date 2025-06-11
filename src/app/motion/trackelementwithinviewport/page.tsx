@@ -1,27 +1,49 @@
 "use client";
-import { useMotionValueEvent, useScroll } from "motion/react";
-import CircularProgressBar from "@/components/widgets/CircularProgressBar";
-import { useRef } from "react";
-import ProgressCircle from "@/components/widgets/CircularProgressBar";
-const UseScrollExample = () => {
-  const ref = useRef(null);
-  const { scrollY, scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["end end", "start start"],
-  });
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log("Page scroll", latest);
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import { useEffect, useRef } from "react";
+const UseScrollExample = () => {
+  const refFirstDiv = useRef(null);
+  const refSecondDiv = useRef(null);
+  const refMain = useRef(null);
+  const { scrollYProgress: firstDivProgress } = useScroll({
+    target: refFirstDiv,
+  });
+  const { scrollYProgress: secondDivProgress } = useScroll({
+    target: refSecondDiv,
+  });
+  const { scrollYProgress: refMainProgress } = useScroll({
+    target: refMain,
+  });
+  useMotionValueEvent(firstDivProgress, "change", (latest) => {
+    console.log("page scroll: ", latest);
+  });
+  useMotionValueEvent(secondDivProgress, "change", (latest) => {
+    console.log("page scroll second : ", latest);
+  });
+  useMotionValueEvent(refMainProgress, "change", (latest) => {
+    console.log("main scroll : ", latest);
   });
 
   return (
-    <div className="flex w-full min-h-screen justify-center bg-background py-20 relative">
-      <div className="container-center flex-col gap-y-10 items-center min-h-screen h-full">
-        <h3 className="text-[38px] font-semibold tracking-[-1.5px] leading-[38px] pb-10">
-          Track element within viewport
-        </h3>
-      </div>
-    </div>
+    <motion.div
+      ref={refMain}
+      className="flex flex-col w-full min-h-screen items-center bg-background py-20 relative object-cover "
+    >
+      <h3 className="text-[38px] font-semibold tracking-[-1.5px] leading-[38px] pb-10">
+        Track element within viewport
+      </h3>
+      <motion.div
+        className="relative container-center flex-col gap-y-10 items-center h-[2000px] bg-purple-200 rounded-4xl mb-10 "
+        ref={refFirstDiv}
+        style={{ scale: firstDivProgress }}
+      ></motion.div>
+      <motion.div
+        ref={refSecondDiv}
+        style={{ scale: secondDivProgress }}
+        className="container-center items-center h-screen bg-white rounded-4xl"
+      ></motion.div>
+    </motion.div>
   );
 };
 export default UseScrollExample;

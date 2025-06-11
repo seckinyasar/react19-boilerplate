@@ -76,6 +76,24 @@ export default function Home() {
               <Cuboid className="size-3.5 ml-2" />
             </Link>
           </div>
+          <div>
+            <Link
+              className={buttonVariants({ variant: "outline" })}
+              href="/motion/usetransform"
+            >
+              UseTransform Example
+              <Cuboid className="size-3.5 ml-2" />
+            </Link>
+          </div>
+          <div>
+            <Link
+              className={buttonVariants({ variant: "outline" })}
+              href="/motion/layout"
+            >
+              Layout
+              <Cuboid className="size-3.5 ml-2" />
+            </Link>
+          </div>
         </div>
       </div>
     </div>
