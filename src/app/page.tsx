@@ -90,7 +90,16 @@ export default function Home() {
               className={buttonVariants({ variant: "outline" })}
               href="/motion/layout"
             >
-              Layout
+              Sliding Underline - Layout
+              <Cuboid className="size-3.5 ml-2" />
+            </Link>
+          </div>
+          <div>
+            <Link
+              className={buttonVariants({ variant: "outline" })}
+              href="/motion/test"
+            >
+              Name later
               <Cuboid className="size-3.5 ml-2" />
             </Link>
           </div>

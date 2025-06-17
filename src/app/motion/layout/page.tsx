@@ -1,5 +1,5 @@
 "use client";
-import { animate, motion, useMotionValue } from "motion/react";
+import { motion, useMotionValue } from "motion/react";
 import { useState } from "react";
 const Layout = () => {
   const [active, setActive] = useState(1);
@@ -16,11 +16,11 @@ const Layout = () => {
   //     ></motion.span>
   //   );
   // };
+
   const Indicator = () => {
     return (
       <motion.span
-        id="underline"
-        layoutId="underline"
+        layoutId="underlineEffect"
         // style={{ x: x }}
         // transition={{ type: "spring", duration: 2, bounce: 0.2 }}
         className="absolute left-0 bottom-0 h-1 w-[240px] bg-white rounded-b-md"
@@ -33,11 +33,11 @@ const Layout = () => {
       <h1 className="text-[38px] font-semibold tracking-[-1.5px] leading-[38px] pb-20">
         Layouts Example
       </h1>
-      <motion.div className="flex items-center relative overflow-clip">
+      <motion.div className="flex items-center relative ">
         <motion.div
           // onClick={() => animate(x, 0, { type: "spring", duration: 1 })}
           onClick={() => setActive(1)}
-          className="w-[240px] py-8 rounded-md border border-border box-border relative"
+          className="w-[240px] py-8 rounded- border border-border box-border relative"
         >
           {active === 1 && <Indicator />}
         </motion.div>

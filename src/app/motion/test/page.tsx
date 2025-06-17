@@ -1,150 +1,118 @@
 "use client";
 
-import { AnimatePresence } from "motion/react";
-import * as motion from "motion/react-client";
-import { useState } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+} from "motion/react";
+import { useRef, useState } from "react";
 
-export default function SharedLayoutAnimation() {
-  const [selectedTab, setSelectedTab] = useState(tabs[0]);
+import { MessageCircleIcon, PaperclipIcon } from "lucide-react";
+import { boolean } from "zod";
 
+const Test = () => {
+  const mainDivRef = useRef(null);
+  const firstDiv = useRef(null);
+  const secondDiv = useRef(null);
+
+  const { scrollYProgress: firstDivProgress } = useScroll({
+    target: firstDiv,
+    offset: ["0", "0.1"], // Top of target (0) aligns with middle of container (0.5)
+  });
+  const { scrollYProgress: secondDivProgress } = useScroll({
+    target: secondDiv,
+  });
+  const [crossed, setCrossed] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useMotionValueEvent(firstDivProgress, "change", () => {
+    setCrossed(firstDivProgress.get() >= 1);
+    console.log(firstDivProgress);
+  });
+
+  const [clicked, setClicked] = useState(false);
   return (
-    <div style={container}>
-      <nav style={nav}>
-        <ul style={tabsContainer}>
-          {tabs.map((item) => (
-            <motion.li
-              key={item.label}
-              initial={false}
-              animate={{
-                backgroundColor: item === selectedTab ? "#eee" : "#eee0",
-              }}
-              style={tab}
-              onClick={() => setSelectedTab(item)}
-            >
-              {`${item.icon} ${item.label}`}
-              {item === selectedTab ? (
-                <motion.div
-                  style={underline}
-                  layoutId="underline"
-                  id="underline"
-                />
-              ) : null}
-            </motion.li>
-          ))}
-        </ul>
-      </nav>
-      <main style={iconContainer}>
-        <AnimatePresence mode="wait">
+    <div
+      ref={mainDivRef}
+      className="flex flex-col w-full h-[300vh] bg-background items-center py-20 relative"
+    >
+      <h2 className="text-[38px] font-semibold tracking-[-1.5px] leading-[38px] pb-20">
+        Test
+      </h2>
+      <div
+        ref={firstDiv}
+        className="flex w-full h-[100vh] items-center justify-center"
+      >
+        {!crossed && (
           <motion.div
-            key={selectedTab ? selectedTab.label : "empty"}
-            initial={{ y: 10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -10, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            style={icon}
+            key="message-box"
+            layoutId="message"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: +50, x: +50 }}
+            className="w-[400px] h-[200px] border border-gray-600 rounded-e-lg flex flex-col items-center p-4"
           >
-            {selectedTab ? selectedTab.icon : "😋"}
+            <h3 className="text-xl">Hi</h3>
+            <div className="text-center pt-4">
+              Bu öge scrollProgress kendi y degerini gectiginde sağ alta
+              animasyonlu bir şekilde gidiyor olmalı.
+            </div>
           </motion.div>
+        )}
+
+        {crossed && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.35, easings: "easeIn" }}
+            layoutId="message"
+            className="fixed bottom-10 right-10"
+          >
+            <div className="size-14 rounded-full flex items-center justify-center bg-gray-800 shadow-lg">
+              <MessageCircleIcon className="size-7 text-white" />
+            </div>
+          </motion.div>
+        )}
+      </div>
+
+      <div ref={secondDiv} className="flex w-full h-[100vh] bg-gray-600">
+        <AnimatePresence>
+          {menuOpen ? (
+            <motion.div
+              key="mainDiv"
+              className="w-[320px] h-fit border border-border rounded-xl flex flex-col gap-y-6 px-6 py-6"
+            >
+              <span>Welcome, please enter your credentials.</span>
+              <div className="flex items-center pl-2 w-full h-10 text-base border border-border rounded-lg ">
+                Name
+              </div>
+              <div className="flex items-center pl-2 w-full h-10 text-base border border-border rounded-lg ">
+                Surname
+              </div>
+              <div className="flex items-center pl-2 w-full h-10 text-base border border-border rounded-lg ">
+                Email Address
+              </div>
+              <div
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-center bg-gray-600 hover:bg-gray-400  w-full h-10 text-base border border-border rounded-lg "
+              >
+                Submit
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="buttonToOpenForm"
+              onClick={() => setMenuOpen(true)}
+              className="size-16 bg-gray-600 hover:bg-gray-400 rounded-full flex items-center justify-center group"
+            >
+              <PaperclipIcon className="size-8 stroke-1 group-hover:stroke-sky-400" />
+            </motion.div>
+          )}
         </AnimatePresence>
-      </main>
+      </div>
     </div>
   );
-}
-
-/**
- * ==============   Styles   ================
- */
-
-const container: React.CSSProperties = {
-  width: 480,
-  height: "60vh",
-  maxHeight: 360,
-  borderRadius: 10,
-  background: "white",
-  overflow: "hidden",
-  boxShadow:
-    "0 1px 1px hsl(0deg 0% 0% / 0.075), 0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075), 0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075), 0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075), 0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075)",
-  display: "flex",
-  flexDirection: "column",
 };
 
-const nav: React.CSSProperties = {
-  background: "#fdfdfd",
-  padding: "5px 5px 0",
-  borderRadius: "10px",
-  borderBottomLeftRadius: 0,
-  borderBottomRightRadius: 0,
-  borderBottom: "1px solid #eeeeee",
-  height: 44,
-};
-
-const tabsStyles: React.CSSProperties = {
-  listStyle: "none",
-  padding: 0,
-  margin: 0,
-  fontWeight: 500,
-  fontSize: 14,
-};
-
-const tabsContainer: React.CSSProperties = {
-  ...tabsStyles,
-  display: "flex",
-  width: "100%",
-};
-
-const tab: React.CSSProperties = {
-  ...tabsStyles,
-  borderRadius: 5,
-  borderBottomLeftRadius: 0,
-  borderBottomRightRadius: 0,
-  width: "100%",
-  padding: "10px 15px",
-  position: "relative",
-  background: "white",
-  cursor: "pointer",
-  height: 24,
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  flex: 1,
-  minWidth: 0,
-  userSelect: "none",
-  color: "#0f1115",
-};
-
-const underline: React.CSSProperties = {
-  position: "absolute",
-  bottom: -2,
-  left: 0,
-  right: 0,
-  height: 2,
-  background: "var(--accent)",
-};
-
-const iconContainer: React.CSSProperties = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  flex: 1,
-};
-
-const icon: React.CSSProperties = {
-  fontSize: 128,
-};
-
-/**
- * ==============   Data   ================
- */
-
-const allIngredients = [
-  { icon: "🍅", label: "Tomato" },
-  { icon: "🥬", label: "Lettuce" },
-  { icon: "🧀", label: "Cheese" },
-  { icon: "🥕", label: "Carrot" },
-  { icon: "🍌", label: "Banana" },
-  { icon: "🫐", label: "Blueberries" },
-  { icon: "🥂", label: "Champers?" },
-];
-
-const [tomato, lettuce, cheese] = allIngredients;
-const tabs = [tomato, lettuce, cheese];
+export default Test;
