@@ -3,13 +3,27 @@
 import {
   AnimatePresence,
   motion,
+  MotionConfig,
+  Transition,
   useMotionValueEvent,
   useScroll,
 } from "motion/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { MessageCircleIcon, PaperclipIcon } from "lucide-react";
-import { boolean } from "zod";
+import {
+  ChevronDown,
+  ChevronRight,
+  ChevronUp,
+  CircleUser,
+  MessageCircle,
+  MessageCircleCodeIcon,
+  MessageCircleHeart,
+  MessageCircleIcon,
+  MessageSquare,
+  PaperclipIcon,
+  User,
+  User2,
+} from "lucide-react";
 
 const Test = () => {
   const mainDivRef = useRef(null);
@@ -25,36 +39,42 @@ const Test = () => {
   });
   const [crossed, setCrossed] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showPeople, setShowPeople] = useState(false);
 
   useMotionValueEvent(firstDivProgress, "change", () => {
     setCrossed(firstDivProgress.get() >= 1);
     console.log(firstDivProgress);
   });
 
-  const [clicked, setClicked] = useState(false);
+  const TRANSITION: Transition = {
+    duration: 0.5,
+    type: "spring",
+    bounce: 0.05,
+    ease: "easeInOut",
+  };
+
   return (
     <div
       ref={mainDivRef}
-      className="flex flex-col w-full h-[300vh] bg-background items-center py-20 relative"
+      className="flex flex-col w-full h-[400vh] bg-background items-center relative"
     >
-      <h2 className="text-[38px] font-semibold tracking-[-1.5px] leading-[38px] pb-20">
-        Test
-      </h2>
       <div
+        className="flex flex-col w-full h-[100vh] items-center"
         ref={firstDiv}
-        className="flex w-full h-[100vh] items-center justify-center"
       >
+        <h2 className="text-[38px] font-semibold tracking-[-1.5px] leading-[38px] pt-20">
+          Test
+        </h2>
         {!crossed && (
           <motion.div
             key="message-box"
             layoutId="message"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 200 }}
             exit={{ opacity: 0, y: +50, x: +50 }}
-            className="w-[400px] h-[200px] border border-gray-600 rounded-e-lg flex flex-col items-center p-4"
+            className="w-[400px] h-[200px] border border-gray-600 rounded-4xl flex flex-col items-center p-10"
           >
-            <h3 className="text-xl">Hi</h3>
-            <div className="text-center pt-4">
+            <div className="text-center m-auto">
               Bu öge scrollProgress kendi y degerini gectiginde sağ alta
               animasyonlu bir şekilde gidiyor olmalı.
             </div>
@@ -76,41 +96,121 @@ const Test = () => {
         )}
       </div>
 
-      <div ref={secondDiv} className="flex w-full h-[100vh] bg-gray-600">
-        <AnimatePresence>
+      <div
+        ref={secondDiv}
+        className="flex w-full items-center justify-center h-[100vh] "
+      >
+        <MotionConfig transition={TRANSITION}>
           {menuOpen ? (
             <motion.div
+              layoutId="buttonToOpenForm"
               key="mainDiv"
-              className="w-[320px] h-fit border border-border rounded-xl flex flex-col gap-y-6 px-6 py-6"
+              className="w-[320px] bg-black origin-top-left border border-border"
+              style={{
+                borderRadius: "32px",
+              }}
             >
-              <span>Welcome, please enter your credentials.</span>
-              <div className="flex items-center pl-2 w-full h-10 text-base border border-border rounded-lg ">
-                Name
-              </div>
-              <div className="flex items-center pl-2 w-full h-10 text-base border border-border rounded-lg ">
-                Surname
-              </div>
-              <div className="flex items-center pl-2 w-full h-10 text-base border border-border rounded-lg ">
-                Email Address
-              </div>
-              <div
-                onClick={() => setMenuOpen(false)}
-                className="flex items-center justify-center bg-gray-600 hover:bg-gray-400  w-full h-10 text-base border border-border rounded-lg "
-              >
-                Submit
-              </div>
+              <section className="flex flex-col gap-y-6 px-6 py-6">
+                <span>Welcome, please enter your credentials.</span>
+                <div className="flex items-center pl-2 w-full h-10 text-base border border-border rounded-lg ">
+                  Name
+                </div>
+                <div className="flex items-center pl-2 w-full h-10 text-base border border-border rounded-lg ">
+                  Surname
+                </div>
+                <div className="flex items-center pl-2 w-full h-10 text-base border border-border rounded-lg ">
+                  Email Address
+                </div>
+                <div
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center justify-center bg-accent hover:bg-accent/50 text-black  w-full h-10 text-base border border-border rounded-lg"
+                >
+                  Submit
+                </div>
+              </section>
             </motion.div>
           ) : (
             <motion.div
+              layoutId="buttonToOpenForm"
               key="buttonToOpenForm"
               onClick={() => setMenuOpen(true)}
-              className="size-16 bg-gray-600 hover:bg-gray-400 rounded-full flex items-center justify-center group"
+              className="size-16 bg-black flex items-center justify-center group"
+              style={{
+                borderRadius: "32px",
+              }}
             >
               <PaperclipIcon className="size-8 stroke-1 group-hover:stroke-sky-400" />
             </motion.div>
           )}
-        </AnimatePresence>
+        </MotionConfig>
       </div>
+
+      <div className="flex w-full h-[100vh] justify-center items-center text-gray-400">
+        <div className="flex max-w-md w-full h-[400px]">
+          <div className="flex flex-col flex-1">
+            <button
+              onClick={() => {
+                setShowPeople(!showPeople);
+              }}
+              className="flex w-full h-10 items-center px-3 rounded-md  justify-between hover:bg-[rgba(37,37,37,0.2)] "
+            >
+              <div className="flex text-[15px] space-x-2 items-center">
+                <User className="size-5" />
+                <div>People</div>
+                <div className="size-4 rounded-full bg-gray-600 text-xs items-center flex justify-center">
+                  25
+                </div>
+              </div>
+              <div className="flex items-center gap-1">
+                {showPeople ? "Hide" : "Show"}
+                {showPeople ? (
+                  <ChevronUp className="size-4" />
+                ) : (
+                  <ChevronDown className="size-4" />
+                )}
+              </div>
+            </button>
+            {/* //! Animation Part */}
+            <div className="flex flex-col flex-1 p-6 gap-y-3">
+              <section className="flex w-full h-10 px-2.5 rounded-md border border-border justify-between items-center z-50 bg-background">
+                <div className="flex text-[15px] gap-x-2 items-center">
+                  <CircleUser className="size-5" />
+                  John Doe
+                </div>
+                <MessageSquare className="size-5" />
+              </section>{" "}
+              <motion.section
+                initial={{ y: -40 }}
+                animate={
+                  showPeople ? { y: 0, scaleX: 1 } : { y: -40, scaleX: 0.9 }
+                }
+                className="flex w-full h-10 px-2.5 rounded-md border border-border justify-between items-center bg-background z-30"
+              >
+                <div className="flex text-[15px] gap-x-2 items-center">
+                  <CircleUser className="size-5" />
+                  John Doe
+                </div>
+                <MessageSquare className="size-5" />
+              </motion.section>{" "}
+              <motion.section
+                initial={{ y: -40 }}
+                animate={
+                  showPeople ? { y: 0, scaleX: 1 } : { y: -80, scaleX: 0.8 }
+                }
+                className="flex w-full h-10 px-2.5 rounded-md border border-border justify-between items-center"
+              >
+                <div className="flex text-[15px] gap-x-2 items-center">
+                  <CircleUser className="size-5" />
+                  John Doe
+                </div>
+                <MessageSquare className="size-5" />
+              </motion.section>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <main className="flex w-full h-[100vh] justify-center items-center"></main>
     </div>
   );
 };
