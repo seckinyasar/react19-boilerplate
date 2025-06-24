@@ -1,5 +1,19 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+import {
+  Blocks,
+  ChevronDown,
+  ChevronUp,
+  CircleUser,
+  FileStack,
+  Hash,
+  List,
+  MessageCircleIcon,
+  MessageSquare,
+  PaperclipIcon,
+  User,
+} from "lucide-react";
 import {
   AnimatePresence,
   motion,
@@ -8,28 +22,20 @@ import {
   useMotionValueEvent,
   useScroll,
 } from "motion/react";
-import { useEffect, useRef, useState } from "react";
-
-import {
-  ChevronDown,
-  ChevronRight,
-  ChevronUp,
-  CircleUser,
-  MessageCircle,
-  MessageCircleCodeIcon,
-  MessageCircleHeart,
-  MessageCircleIcon,
-  MessageSquare,
-  PaperclipIcon,
-  User,
-  User2,
-} from "lucide-react";
+import Image from "next/image";
+import { useRef, useState } from "react";
 
 const Test = () => {
   const mainDivRef = useRef(null);
   const firstDiv = useRef(null);
   const secondDiv = useRef(null);
 
+  const [crossed, setCrossed] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [showPeople, setShowPeople] = useState(false);
+  const [viewState, setViewState] = useState<View>("List");
+
+  //#region //* Hooks
   const { scrollYProgress: firstDivProgress } = useScroll({
     target: firstDiv,
     offset: ["0", "0.1"], // Top of target (0) aligns with middle of container (0.5)
@@ -37,14 +43,57 @@ const Test = () => {
   const { scrollYProgress: secondDivProgress } = useScroll({
     target: secondDiv,
   });
-  const [crossed, setCrossed] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [showPeople, setShowPeople] = useState(false);
 
   useMotionValueEvent(firstDivProgress, "change", () => {
     setCrossed(firstDivProgress.get() >= 1);
     console.log(firstDivProgress);
   });
+
+  //#endregion
+
+  type View = "List" | "Card" | "Pack";
+
+  const SvgArray = [
+    {
+      id: "1",
+      src: "/fish.svg",
+      // icon: FishSVG,
+      name: "Fish",
+      price: [
+        {
+          price: "0.332",
+          currency: "BTC",
+        },
+      ],
+      number: "300",
+    },
+    {
+      id: "2",
+      src: "/milk.svg",
+      // icon: MilkSVG,
+      name: "Milk",
+      price: [
+        {
+          price: "0.262",
+          currency: "BTC",
+        },
+      ],
+      number: "200",
+    },
+    {
+      id: "3",
+      src: "/steak.svg",
+      // icon: SteakSVG,
+      name: "Steak",
+      price: [
+        {
+          price: "0.512",
+          currency: "BTC",
+        },
+      ],
+      number: "100",
+    },
+  ];
 
   const TRANSITION: Transition = {
     duration: 0.5,
@@ -210,7 +259,137 @@ const Test = () => {
         </div>
       </div>
 
-      <main className="flex w-full h-[100vh] justify-center items-center"></main>
+      <main className="flex w-full h-[100vh] justify-center py-30 text-base">
+        <div className="flex flex-col flex-1 items-center max-w-md ">
+          {/* //* Buttons */}
+          <motion.div
+            layout
+            className="flex space-x-4 pb-6 border-b-[0.1px] border-border "
+          >
+            <motion.button
+              layoutId="buttons"
+              onClick={() => setViewState("List")}
+              className={cn(
+                "flex w-[140px] h-10  rounded-4xl items-center justify-center  gap-x-1.5 "
+              )}
+              style={{
+                backgroundColor: viewState === "List" ? "#117fff" : "#333333",
+              }}
+            >
+              <List className="size-4" />
+              List view
+            </motion.button>
+            <motion.button
+              layoutId="buttons"
+              onClick={() => setViewState("Card")}
+              className={cn(
+                "flex w-[140px] h-10  rounded-4xl items-center justify-center  gap-x-1.5"
+              )}
+              style={{
+                backgroundColor: viewState === "Card" ? "#117fff" : "#333333",
+              }}
+            >
+              <Blocks className="size-4" />
+              Card view
+            </motion.button>
+            <motion.button
+              layoutId="buttons"
+              onClick={() => setViewState("Pack")}
+              className={cn(
+                "flex w-[140px] h-10  rounded-4xl items-center justify-center  gap-x-1.5 "
+              )}
+              style={{
+                backgroundColor: viewState === "Pack" ? "#117fff" : "#333333",
+              }}
+            >
+              <FileStack className="size-4" />
+              Pack view
+            </motion.button>
+          </motion.div>
+
+          {/* //! Views */}
+          <AnimatePresence mode="wait">
+            {viewState === "List" ? (
+              <div className="flex h-full w-full pt-6 text-gray-400">
+                <div className="flex flex-col flex-1 gap-y-4">
+                  {SvgArray.map((item, i) => (
+                    <div className="flex">
+                      <motion.div layoutId={item.id}>
+                        <Image
+                          className="bg-neutral-700 rounded-xl"
+                          src={item.src}
+                          width={75}
+                          height={75}
+                          alt="test"
+                          key={item.id}
+                        />
+                      </motion.div>
+
+                      <section className="flex flex-col justify-center">
+                        <div className="ml-3 text-[15px] font-semibold text-amber-50">
+                          {item.name}
+                        </div>
+                        {item.price.map((price, i) => (
+                          <div className="space-x-1 ml-3 ">
+                            <span className="text-amber-50 font-semibold">
+                              {price.price}
+                            </span>
+                            <span>{price.currency}</span>
+                          </div>
+                        ))}
+                      </section>
+                      <section className="flex items-center justify-end w-full">
+                        <Hash className="size-5" />
+                        <span className="text-lg">{item.number}</span>
+                      </section>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <section className="flex h-full w-full pt-6 text-gray-400">
+                <div className="flex flex-wrap justify-between">
+                  {SvgArray.map((item, i) => (
+                    <div className="flex flex-col">
+                      <motion.div layoutId={item.id}>
+                        <Image
+                          className="bg-neutral-700 rounded-xl"
+                          alt={item.name}
+                          src={item.src}
+                          height={200}
+                          width={200}
+                          key={item.id}
+                        />
+                      </motion.div>
+                      <div className="flex flex-col flex-1 px-1 py-2">
+                        <span className="text-[15px] font-semibold text-white">
+                          {item.name}
+                        </span>
+                        <div className="flex w-full justify-between">
+                          {item.price.map((price, i) => (
+                            <>
+                              <div className="flex gap-x-1">
+                                <span className="font-semibold  text-amber-50">
+                                  {price.price}
+                                </span>
+                                <span>{price.currency}</span>
+                              </div>
+                              <div className="flex">
+                                <Hash className="size-5" />
+                                {item.number}
+                              </div>
+                            </>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+          </AnimatePresence>
+        </div>
+      </main>
     </div>
   );
 };
