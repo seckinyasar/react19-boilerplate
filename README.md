@@ -1,6 +1,6 @@
 # React19 Boilerplate
 
-**Boilerplate for React 19, Next.js 15, Tailwind CSS 4, and Framer Motion** projects.
+**Boilerplate for React 19, Next.js 15, Tailwind CSS 4, and Framer Motion** projects. [See versions below](#dependencies).
 
 It is designed to kickstart my frontend tasks. It will be regularly updated with new components and features.
 
