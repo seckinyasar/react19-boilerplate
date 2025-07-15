@@ -61,15 +61,6 @@ export default function Home() {
           <div>
             <Link
               className={buttonVariants({ variant: "outline" })}
-              href="/motion/usescroll"
-            >
-              Motion Hook =&gt; useScroll
-              <Cuboid className="size-3.5 ml-2" />
-            </Link>
-          </div>
-          <div>
-            <Link
-              className={buttonVariants({ variant: "outline" })}
               href="/motion/trackelementwithinviewport"
             >
               Track Element Within Viewport
@@ -97,9 +88,33 @@ export default function Home() {
           <div>
             <Link
               className={buttonVariants({ variant: "outline" })}
-              href="/motion/test"
+              href="/motion/layoutexamples"
             >
-              Name later
+              Layout Examples
+              <Cuboid className="size-3.5 ml-2" />
+            </Link>
+          </div>
+          <div>
+            <Link
+              className={buttonVariants({ variant: "outline" })}
+              href="/motion/flexgrowsample"
+            >
+              Flex Grow Sample
+              <Cuboid className="size-3.5 ml-2" />
+            </Link>
+          </div>
+        </div>
+        <div className="flex flex-col gap-y-5 border border-border p-10 rounded-sm">
+          <h2 className="text-lg flex items-center ">
+            Motion Hooks
+            <Library className="size-3.5 ml-2" />
+          </h2>
+          <div>
+            <Link
+              className={buttonVariants({ variant: "outline" })}
+              href="/motion/usescroll"
+            >
+              Motion Hook =&gt; useScroll
               <Cuboid className="size-3.5 ml-2" />
             </Link>
           </div>

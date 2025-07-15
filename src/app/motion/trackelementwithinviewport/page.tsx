@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 const UseScrollExample = () => {
   const refFirstDiv = useRef(null);
   const refSecondDiv = useRef(null);

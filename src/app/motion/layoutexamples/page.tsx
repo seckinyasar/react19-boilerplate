@@ -134,7 +134,7 @@ const Test = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.35, easings: "easeIn" }}
+            transition={{ duration: 0.35, ease: "easeIn" }}
             layoutId="message"
             className="fixed bottom-10 right-10"
           >
@@ -308,15 +308,20 @@ const Test = () => {
           </motion.div>
 
           {/* //! Views */}
-          <AnimatePresence mode="wait">
-            {viewState === "List" ? (
+          <AnimatePresence mode="popLayout">
+            {viewState === "List" && (
               <div className="flex h-full w-full pt-6 text-gray-400">
                 <div className="flex flex-col flex-1 gap-y-4">
                   {SvgArray.map((item, i) => (
-                    <div className="flex">
-                      <motion.div layoutId={item.id}>
+                    <div className="flex" key={item.id}>
+                      <motion.div
+                        layoutId={item.id}
+                        style={{
+                          backgroundColor: "#404040",
+                          borderRadius: "12px",
+                        }}
+                      >
                         <Image
-                          className="bg-neutral-700 rounded-xl"
                           src={item.src}
                           width={75}
                           height={75}
@@ -325,67 +330,134 @@ const Test = () => {
                         />
                       </motion.div>
 
-                      <section className="flex flex-col justify-center">
+                      <motion.section
+                        layoutId={item.name}
+                        className="flex flex-col justify-center"
+                      >
                         <div className="ml-3 text-[15px] font-semibold text-amber-50">
                           {item.name}
                         </div>
-                        {item.price.map((price, i) => (
-                          <div className="space-x-1 ml-3 ">
+                        {item.price.map((price) => (
+                          <div className="space-x-1 ml-3" key={price.price}>
                             <span className="text-amber-50 font-semibold">
                               {price.price}
                             </span>
                             <span>{price.currency}</span>
                           </div>
                         ))}
-                      </section>
+                      </motion.section>
                       <section className="flex items-center justify-end w-full">
-                        <Hash className="size-5" />
-                        <span className="text-lg">{item.number}</span>
+                        <motion.div
+                          style={{ width: "20px", height: "20px" }}
+                          layoutId={item.number + 1}
+                        >
+                          <Hash className="size-full " />
+                        </motion.div>
+                        <motion.span layoutId={item.number} className="text-lg">
+                          {item.number}
+                        </motion.span>
                       </section>
                     </div>
                   ))}
                 </div>
               </div>
-            ) : (
+            )}
+            {viewState === "Card" && (
               <section className="flex h-full w-full pt-6 text-gray-400">
                 <div className="flex flex-wrap justify-between">
-                  {SvgArray.map((item, i) => (
-                    <div className="flex flex-col">
-                      <motion.div layoutId={item.id}>
+                  {SvgArray.map((item) => (
+                    <div className="flex flex-col" key={item.id}>
+                      <motion.div
+                        layoutId={item.id}
+                        style={{
+                          backgroundColor: "#404040",
+                          borderRadius: "12px",
+                        }}
+                      >
                         <Image
-                          className="bg-neutral-700 rounded-xl"
+                          key={item.id}
                           alt={item.name}
                           src={item.src}
                           height={200}
                           width={200}
-                          key={item.id}
+                          style={{ borderRadius: "12px" }}
                         />
                       </motion.div>
-                      <div className="flex flex-col flex-1 px-1 py-2">
+
+                      <motion.section
+                        layoutId={item.name}
+                        className="flex flex-col flex-1 px-1 py-2"
+                      >
                         <span className="text-[15px] font-semibold text-white">
                           {item.name}
                         </span>
                         <div className="flex w-full justify-between">
-                          {item.price.map((price, i) => (
-                            <>
-                              <div className="flex gap-x-1">
-                                <span className="font-semibold  text-amber-50">
-                                  {price.price}
-                                </span>
-                                <span>{price.currency}</span>
+                          {item.price.map((price) => (
+                            <div className="flex w-full" key={price.price}>
+                              <span className="font-semibold  text-amber-50 mr-1">
+                                {price.price}
+                              </span>
+                              <span>{price.currency}</span>
+                              <div className="flex ml-auto">
+                                <motion.div
+                                  layoutId={item.number + 1}
+                                  style={{ width: "20px", height: "20px" }}
+                                >
+                                  <Hash className="size-full " />
+                                </motion.div>
+                                <motion.span
+                                  layoutId={item.number}
+                                  className="text-lg"
+                                >
+                                  {item.number}
+                                </motion.span>
                               </div>
-                              <div className="flex">
-                                <Hash className="size-5" />
-                                {item.number}
-                              </div>
-                            </>
+                            </div>
                           ))}
                         </div>
-                      </div>
+                      </motion.section>
                     </div>
                   ))}
                 </div>
               </section>
+            )}
+
+            {viewState === "Pack" && (
+              <main className="flex h-full w-full pt-6 text-gray-400">
+                <main className="flex flex-col flex-1 items-center">
+                  {/* //! CARDS */}
+                  <div className="flex w-full h-fit items-center justify-center">
+                    <div className="relative flex flex-col flex-1 items-center">
+                      {SvgArray.map((item, i) => (
+                        <motion.div
+                          key={item.id}
+                          layoutId={item.id}
+                          style={{
+                            backgroundColor: "#404040",
+                            borderRadius: "12px",
+                            position: "absolute",
+                            rotate: i * 20,
+                            x: i * 50,
+                            y: i * 30,
+                          }}
+                        >
+                          <Image
+                            alt={item.name}
+                            src={item.src}
+                            height={100}
+                            width={200}
+                          />
+                        </motion.div>
+                      ))}
+                    </div>
+                    {SvgArray.map((item) => (
+                      <div className="flex flex-col gap-y-2" key={item.id}>
+                        <span>{item.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </main>
+              </main>
             )}
           </AnimatePresence>
         </div>

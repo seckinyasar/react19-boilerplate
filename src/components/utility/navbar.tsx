@@ -13,18 +13,19 @@
  */
 //#endregion
 
-import { LucideComponent } from "lucide-react";
+import { Home, LucideComponent } from "lucide-react";
+import Link from "next/link";
 import ThemeSwitcher from "../themeSwitcher";
 
 const pages = [
   {
-    page: "elements",
-    href: "/elements",
-    icon: LucideComponent,
+    page: "Home",
+    href: "/",
+    icon: Home,
   },
   {
     page: "forms",
-    href: "/forms",
+    href: "/reactflow",
     icon: LucideComponent,
   },
 ];
@@ -34,11 +35,13 @@ export default function Navbar() {
     <div className="fixed  bottom-6 left-1/2 -translate-x-1/2   ">
       <div className="bg-secondary/15 flex items-center justify-between w-fit px-2 h-14 rounded-full space-x-1">
         {pages.map((page, index) => (
-          <div
+          <Link
             key={index}
-            className="bg-black/40 rounded-full size-12 flex items-center justify-center hover:bg-black hover:scale-110">
+            href={page.href}
+            className="bg-black/40 rounded-full size-12 flex items-center justify-center hover:bg-black hover:scale-110"
+          >
             <page.icon className="size-5 " />
-          </div>
+          </Link>
         ))}
         <ThemeSwitcher navbar />
       </div>

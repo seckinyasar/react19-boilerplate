@@ -192,6 +192,7 @@
   "cSpell.enabledFileTypes": {
     "typescriptreact": false,
     "css": false,
-    "javascript": false
+    "javascript": false,
+    "markdown": false
   }
 }
