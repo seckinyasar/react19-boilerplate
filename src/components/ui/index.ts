@@ -1,11 +1,11 @@
-import { Button } from "./button";
-import { Input } from "./input";
-import { Textarea } from "./textarea";
-import * as Breadcrumb from "./breadcrumb";
-import * as Accordion from "./accordion";
-import { Checkbox, CheckboxWithText } from "./checkbox";
-import { Toaster } from "./sonner";
-import * as Tabs from "./tabs";
+import { Button } from "./Button";
+import { Input } from "./Input";
+import { Textarea } from "./Textarea";
+import * as Breadcrumb from "./Breadcrumb";
+import * as Accordion from "./Accordion";
+import { Checkbox, CheckboxWithText } from "./Checkbox";
+import { Toaster } from "./Sonner";
+import * as Tabs from "./Tabs";
 export {
   Button,
   Input,

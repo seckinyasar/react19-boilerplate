@@ -20,7 +20,7 @@
 import { Moon, SunMedium } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { Button } from "./ui/button";
+import { Button } from "./ui/Button";
 import { cn } from "@/lib/utils";
 
 interface ThemeSwitcherProps {
@@ -41,7 +41,8 @@ const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ navbar = false }) => {
     <Button
       variant={navbar ? "onlyIcon" : "outline"}
       size={navbar ? "navbar" : "default"}
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+    >
       {theme === "dark" ? (
         <Moon
           className={cn(

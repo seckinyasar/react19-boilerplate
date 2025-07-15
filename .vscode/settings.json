@@ -183,7 +183,7 @@
 
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
 
-  "workbench.colorTheme": "Noctis Obscuro",
+  "workbench.colorTheme": "Noctis",
 
   "editor.fontFamily": "FiraCode",
   "[jsonc]": {
@@ -192,6 +192,7 @@
   "cSpell.enabledFileTypes": {
     "typescriptreact": false,
     "css": false,
-    "javascript": false
+    "javascript": false,
+    "markdown": false
   }
 }

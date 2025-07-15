@@ -72,7 +72,8 @@ function AccordionTrigger({
           "[&[data-state=open]>svg]:rotate-180",
           className
         )}
-        {...props}>
+        {...props}
+      >
         {children}
         <ChevronDownIcon
           className={cn(
@@ -106,13 +107,15 @@ function AccordionContent({
         "data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
         className
       )}
-      {...props}>
+      {...props}
+    >
       <div
         className={cn(
           //! Base
           "pt-0 pb-4",
           className
-        )}>
+        )}
+      >
         {children}
       </div>
     </AccordionPrimitive.Content>
