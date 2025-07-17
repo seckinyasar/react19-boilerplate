@@ -1,10 +1,12 @@
 {
   // List of extensions which should be recommended for users of this workspace.
-  // vscode prompts to install all of these for the first time project is opened.
+  // VS Code prompts to install all of these for the first time project is opened.
   // Otherwise, see https://code.visualstudio.com/docs/editor/extension-marketplace#_workspace-recommended-extensions
   "recommendations": [
+    // IntelliSense and API Support
     "VisualStudioExptTeam.intellicode-api-usage-examples",
     "xabikos.JavaScriptSnippets",
+    "christian-kohler.npm-intellisense",
 
     // Functionality
     "wix.vscode-import-cost",
@@ -17,22 +19,34 @@
     "kisstkondoros.vscode-codemetrics",
     "formulahendry.auto-rename-tag",
     "shd101wyy.markdown-preview-enhanced",
+    "AKROSS.attributes-collapse",
+    "alexcvzz.vscode-sqlite",
+    "rangav.vscode-thunder-client",
 
-    // type-checkers
+    // Type Checkers
     "rvest.vs-code-prettier-eslint",
     "dbaeumer.vscode-eslint",
     "streetsidesoftware.code-spell-checker",
 
-    // auto-complete
+    // Auto-complete
     "bradlc.vscode-tailwindcss",
-    "christian-kohler.npm-intellisense",
     "Zignd.html-css-class-completion",
     "ecmel.vscode-html-css",
+    "dsznajder.es7-react-js-snippets",
+    "prisma.prisma",
 
-    // UI
+    // AI and Productivity
+    "github.copilot",
+    "github.copilot-chat",
+
+    // UI and Themes
     "PKief.material-icon-theme",
     "liviuschera.noctis",
     "esbenp.prettier-vscode",
-    "enkia.tokyo-night"
+    "enkia.tokyo-night",
+    "motion.motion-vscode-extension",
+    "walnuts1018.oklch-vscode",
+    "aaron-bond.better-comments",
+    "coenraads.disableligatures"
   ]
 }
