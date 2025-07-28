@@ -22,14 +22,14 @@ export default function Home() {
               {menu.links.map((link, i) => (
                 <Link
                   key={i}
-                  href={link.href}
+                  href={link.href || ""}
                   className={buttonVariants({
                     variant: "outline",
                     className: "justify-start w-fit",
                   })}
                 >
-                  {link.label}
-                  {link.icon}
+                  {link.label || ""}
+                  {link.icon && link.icon}
                 </Link>
               ))}
             </div>

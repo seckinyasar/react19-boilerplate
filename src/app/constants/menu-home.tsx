@@ -1,6 +1,16 @@
 import { FilePenLine, Library, Cuboid, Component } from "lucide-react";
 
-const HomeMenu = [
+export interface HomeMenuProps {
+  title: string;
+  icon?: React.ReactNode;
+  links: {
+    href?: string;
+    label?: string;
+    icon?: React.ReactNode;
+  }[];
+}
+
+const HomeMenu: HomeMenuProps[] = [
   {
     title: "Components",
     icon: null,
@@ -62,6 +72,11 @@ const HomeMenu = [
         label: "Flex Grow Sample",
         icon: <Cuboid className="size-3.5 ml-2" />,
       },
+      {
+        href: "/motion/newexample",
+        label: "New Example",
+        icon: <Cuboid className="size-3.5 ml-2" />,
+      },
     ],
   },
   {
@@ -71,7 +86,6 @@ const HomeMenu = [
       {
         href: "/motion/usescroll",
         label: "Motion Hook => useScroll",
-        icon: <Cuboid className="size-3.5 ml-2" />,
       },
     ],
   },
