@@ -54,12 +54,4 @@ The following tasks are planned for future updates (sourced from `notes.md`):
 
 ### Style
 
-- [ ] Inputs can be designed like in Flutter, Devin.
-
 - [ ] Sonner hover state can have better morphing.
-
-- [ ] Flex grow has some unreliable layout changes, let's review the Motion layout docs again.
-
-### Functionality
-
-- [ ] Realtime error handling for forms / check compatibility with server-side confirmation.
