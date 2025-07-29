@@ -153,9 +153,12 @@ const Test = () => {
             <motion.div
               layoutId="buttonToOpenForm"
               key="mainDiv"
-              className="w-[320px] bg-black origin-top-left border border-border"
+              className=" bg-black border border-border"
               style={{
                 borderRadius: "32px",
+                transformOrigin: "top left",
+                width: "320px",
+                height: "fit-content",
               }}
             >
               <section className="flex flex-col gap-y-6 px-6 py-6">
@@ -182,9 +185,12 @@ const Test = () => {
               layoutId="buttonToOpenForm"
               key="buttonToOpenForm"
               onClick={() => setMenuOpen(true)}
-              className="size-16 bg-black flex items-center justify-center group"
+              className=" bg-black flex items-center justify-center group"
               style={{
                 borderRadius: "32px",
+                transformOrigin: "top left",
+                width: "320px",
+                height: "fit-content",
               }}
             >
               <PaperclipIcon className="size-8 stroke-1 group-hover:stroke-sky-400" />
