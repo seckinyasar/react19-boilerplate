@@ -1,4 +1,4 @@
-import { FilePenLine, Library, Cuboid, Component } from "lucide-react";
+import { Component, Cuboid, FilePenLine, Library } from "lucide-react";
 
 export interface HomeMenuProps {
   title: string;
@@ -39,7 +39,7 @@ const HomeMenu: HomeMenuProps[] = [
     ],
   },
   {
-    title: "Motion Dev",
+    title: "Motion",
     icon: <Library className="size-3.5 ml-2" />,
     links: [
       {

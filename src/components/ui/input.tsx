@@ -92,5 +92,3 @@ function Input({
 }
 
 export { Input };
-
-//TODO Flutter, Devin like inputs can be made, but first lets check motiondev.

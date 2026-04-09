@@ -11,13 +11,11 @@ import {
   List,
   MessageCircleIcon,
   MessageSquare,
-  PaperclipIcon,
   User,
 } from "lucide-react";
 import {
   AnimatePresence,
   motion,
-  MotionConfig,
   Transition,
   useMotionValueEvent,
   useScroll,
@@ -28,10 +26,8 @@ import { useRef, useState } from "react";
 const Test = () => {
   const mainDivRef = useRef(null);
   const firstDiv = useRef(null);
-  const secondDiv = useRef(null);
 
   const [crossed, setCrossed] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
   const [showPeople, setShowPeople] = useState(false);
   const [viewState, setViewState] = useState<View>("List");
 
@@ -39,9 +35,6 @@ const Test = () => {
   const { scrollYProgress: firstDivProgress } = useScroll({
     target: firstDiv,
     offset: ["0", "0.1"], // Top of target (0) aligns with middle of container (0.5)
-  });
-  const { scrollYProgress: secondDivProgress } = useScroll({
-    target: secondDiv,
   });
 
   useMotionValueEvent(firstDivProgress, "change", () => {
@@ -141,62 +134,6 @@ const Test = () => {
             </div>
           </motion.div>
         )}
-      </div>
-
-      {/* //* Form Section */}
-      <div
-        ref={secondDiv}
-        className="flex w-full items-center justify-center h-[100vh] "
-      >
-        <MotionConfig transition={TRANSITION}>
-          {menuOpen ? (
-            <motion.div
-              layoutId="buttonToOpenForm"
-              key="mainDiv"
-              className=" bg-black border border-border"
-              style={{
-                borderRadius: "32px",
-                transformOrigin: "top left",
-                width: "320px",
-                height: "fit-content",
-              }}
-            >
-              <section className="flex flex-col gap-y-6 px-6 py-6">
-                <span>Welcome, please enter your credentials.</span>
-                <div className="flex items-center pl-2 w-full h-10 text-base border border-border rounded-lg ">
-                  Name
-                </div>
-                <div className="flex items-center pl-2 w-full h-10 text-base border border-border rounded-lg ">
-                  Surname
-                </div>
-                <div className="flex items-center pl-2 w-full h-10 text-base border border-border rounded-lg ">
-                  Email Address
-                </div>
-                <div
-                  onClick={() => setMenuOpen(false)}
-                  className="flex items-center justify-center bg-accent hover:bg-accent/50 text-black  w-full h-10 text-base border border-border rounded-lg"
-                >
-                  Submit
-                </div>
-              </section>
-            </motion.div>
-          ) : (
-            <motion.div
-              layoutId="buttonToOpenForm"
-              key="buttonToOpenForm"
-              onClick={() => setMenuOpen(true)}
-              className=" bg-black flex items-center justify-center group"
-              style={{
-                borderRadius: "32px",
-                transformOrigin: "top left",
-                width: "320px",
-                height: "fit-content",
-              }}
-            >
-              <PaperclipIcon className="size-8 stroke-1 group-hover:stroke-sky-400" />
-            </motion.div>
-          )}
-        </MotionConfig>
       </div>
 
       {/* //* People Section */}
