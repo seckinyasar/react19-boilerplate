@@ -1,9 +1,9 @@
+import { Toaster } from "@/components/ui/sonner";
+import Navbar from "@/components/utility/navbar";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/ui/Sonner";
-import Navbar from "@/components/utility/navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

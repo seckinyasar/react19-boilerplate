@@ -1,6 +1,6 @@
 "use client";
 
-import { buttonVariants } from "@/components/ui/Button";
+import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import HomeMenu from "./constants/menu-home";
 
