@@ -36,10 +36,12 @@ export default function Page() {
           {/* //* LOGIN */}
           <Tabs.TabsContent
             value="login"
-            className="border border-border rounded-lg p-8">
+            className="border border-border rounded-lg p-8"
+          >
             <form
               onSubmit={(e) => onSubmitHandler(e)}
-              className="flex flex-col w-full h-fit gap-y-2">
+              className="flex flex-col w-full h-fit gap-y-2"
+            >
               <h3 className="text-base font-semibold">Login to your account</h3>
               <p className="text-md font-light opacity-85 pb-8">
                 Welcome, nice to see you here again.{" "}
@@ -56,7 +58,8 @@ export default function Page() {
           {/* //* REGISTER */}
           <Tabs.TabsContent
             value="register"
-            className="border border-border rounded-lg p-8">
+            className="border border-border rounded-lg p-8"
+          >
             <form className="flex flex-col w-full h-fit gap-y-2">
               <h3 className="text-base font-semibold">Create your account</h3>
               <p className="text-md font-light opacity-85 pb-8">

@@ -6,7 +6,7 @@ import {
   CheckboxWithText,
   Input,
   Textarea,
-} from "@/components/ui/index";
+} from "@/components/ui";
 import { toast } from "sonner";
 
 export default function Home() {
@@ -161,7 +161,8 @@ export default function Home() {
                       },
                     },
                   })
-                }>
+                }
+              >
                 Click Me
               </Button>
             </div>

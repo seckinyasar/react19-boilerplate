@@ -107,13 +107,11 @@ const Test = () => {
       ref={mainDivRef}
       className="flex flex-col w-full h-[400vh] bg-background items-center relative"
     >
+      {/* //* Message Section */}
       <div
         className="flex flex-col w-full h-[100vh] items-center"
         ref={firstDiv}
       >
-        <h2 className="text-[38px] font-semibold tracking-[-1.5px] leading-[38px] pt-20">
-          Test
-        </h2>
         {!crossed && (
           <motion.div
             key="message-box"
@@ -124,8 +122,8 @@ const Test = () => {
             className="w-[400px] h-[200px] border border-gray-600 rounded-4xl flex flex-col items-center p-10"
           >
             <div className="text-center m-auto">
-              Bu öge scrollProgress kendi y degerini gectiginde sağ alta
-              animasyonlu bir şekilde gidiyor olmalı.
+              Condition is : scrollYProgress is greater than this div's y
+              position
             </div>
           </motion.div>
         )}
@@ -145,6 +143,7 @@ const Test = () => {
         )}
       </div>
 
+      {/* //* Form Section */}
       <div
         ref={secondDiv}
         className="flex w-full items-center justify-center h-[100vh] "
@@ -154,9 +153,12 @@ const Test = () => {
             <motion.div
               layoutId="buttonToOpenForm"
               key="mainDiv"
-              className="w-[320px] bg-black origin-top-left border border-border"
+              className=" bg-black border border-border"
               style={{
                 borderRadius: "32px",
+                transformOrigin: "top left",
+                width: "320px",
+                height: "fit-content",
               }}
             >
               <section className="flex flex-col gap-y-6 px-6 py-6">
@@ -183,9 +185,12 @@ const Test = () => {
               layoutId="buttonToOpenForm"
               key="buttonToOpenForm"
               onClick={() => setMenuOpen(true)}
-              className="size-16 bg-black flex items-center justify-center group"
+              className=" bg-black flex items-center justify-center group"
               style={{
                 borderRadius: "32px",
+                transformOrigin: "top left",
+                width: "320px",
+                height: "fit-content",
               }}
             >
               <PaperclipIcon className="size-8 stroke-1 group-hover:stroke-sky-400" />
@@ -194,6 +199,7 @@ const Test = () => {
         </MotionConfig>
       </div>
 
+      {/* //* People Section */}
       <div className="flex w-full h-[100vh] justify-center items-center text-gray-400">
         <div className="flex max-w-md w-full h-[400px]">
           <div className="flex flex-col flex-1">
@@ -259,6 +265,7 @@ const Test = () => {
         </div>
       </div>
 
+      {/* //* Cards Section */}
       <main className="flex w-full h-[100vh] justify-center py-30 text-base">
         <div className="flex flex-col flex-1 items-center max-w-md ">
           {/* //* Buttons */}
