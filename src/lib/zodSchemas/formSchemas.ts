@@ -1,7 +1,12 @@
 import { z } from "zod";
 
-const loginSchema = z.object({
+const authEmailSchema = z.object({
   email: z.email("Enter valid email"),
 });
 
-export { loginSchema };
+type AuthEmailFormValues = z.infer<typeof authEmailSchema>;
+
+const loginSchema = authEmailSchema;
+
+export { authEmailSchema, loginSchema };
+export type { AuthEmailFormValues };

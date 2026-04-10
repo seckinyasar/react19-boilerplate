@@ -2,6 +2,7 @@
   "cSpell.enabledFileTypes": {
     "json": false,
     "typescriptreact": false,
-    "ignore": false
+    "ignore": false,
+    "typescript": false
   }
 }
