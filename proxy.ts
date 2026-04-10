@@ -1,1 +1,1 @@
-export { auth } from "@root/auth";
+export function proxy() {}
