@@ -5,7 +5,7 @@ const MetaLogo: React.FC<MyIconProps> = ({
   width = 32,
   height = 31,
   strokeWidth = 1,
-  fill = "black",
+  fill = "#c5c5c5",
 }) => (
   <svg
     width={width}

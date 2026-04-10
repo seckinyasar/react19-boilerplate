@@ -1,22 +1,23 @@
 "use client";
+import Discord from "@/components/icons/discord";
+import Github from "@/components/icons/github";
+import Google from "@/components/icons/google";
+import MetaLogo from "@/components/icons/metalogo";
 import { Button, Input, Tabs } from "@/components/ui";
 import { loginSchema } from "@/lib/zodSchemas/formSchemas";
-import { useState } from "react";
 import { toast } from "sonner";
 import { ZodError } from "zod";
 
 export default function Page() {
-  const [error, setError] = useState<{ email?: string; password?: string }>({});
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const formData = new FormData(e.currentTarget);
       const email = formData.get("email");
-      const password = formData.get("password");
-      const validatedData = loginSchema.parse({ email, password });
+      const validatedData = loginSchema.parse({ email });
       setError({});
       toast("Submitted values", {
-        description: `${validatedData.email}\n${validatedData.password}`,
+        description: `${validatedData.email}`,
       });
     } catch (error) {
       if (error instanceof ZodError) {
@@ -26,57 +27,167 @@ export default function Page() {
   };
 
   return (
-    <div className="flex w-full min-h-screen justify-center bg-background text-foreground pb-20">
-      <div className="flex justify-center w-[600px] h-fit mt-40">
+    <main
+      aria-label="Login and Register Page"
+      className="flex w-full min-h-screen justify-center text-foreground"
+    >
+      <section
+        aria-label="Login and Register Form"
+        className="flex justify-center w-[600px] h-fit mt-40"
+      >
         <Tabs.Tabs defaultValue="login" className="w-[400px] items-center">
           <Tabs.TabsList>
             <Tabs.TabsTrigger value="login">Login</Tabs.TabsTrigger>
             <Tabs.TabsTrigger value="register">Register</Tabs.TabsTrigger>
           </Tabs.TabsList>
+
           {/* //* LOGIN */}
           <Tabs.TabsContent
             value="login"
-            className="border border-border rounded-lg p-8"
+            className="border border-border rounded-[20px] p-10"
           >
             <form
               onSubmit={(e) => onSubmitHandler(e)}
-              className="flex flex-col w-full h-fit gap-y-2"
+              className="flex flex-col w-full h-fit items-center gap-8"
             >
-              <h3 className="text-base font-semibold">Login to your account</h3>
-              <p className="text-md font-light opacity-85 pb-8">
-                Welcome, nice to see you here again.{" "}
-              </p>
-              <div className="flex flex-col gap-y-3 pb-6">
-                <Input placeholder="Email Address" name="email" />
-                {error && <span>{error.email}</span>}
-                <Input placeholder="Password" type="password" name="password" />
-                {error && <span>{error.password}</span>}
+              {/* //? logo & title */}
+              <div className="flex flex-col w-full items-center gap-4">
+                <MetaLogo width={54} height={54} />
+                <h3 className="text-4xl font-semibold">Enter your email</h3>
               </div>
-              <Button type="submit">Log in</Button>
+              {/* //? email input */}
+              <div className="flex flex-col w-full gap-3">
+                <label
+                  htmlFor="email"
+                  className="text-base text-muted-foreground"
+                >
+                  Email
+                </label>
+                <Input
+                  id="email"
+                  placeholder="contactseckin@gmail.com"
+                  name="email"
+                  required
+                  type="email"
+                />
+                <Button type="submit" className="text-base">
+                  Continue
+                </Button>
+              </div>
+              {/* //? OAuth icons */}
+              <div className="flex flex-col w-full items-center gap-8">
+                <div className="flex w-full items-center justify-center">
+                  <span className="w-full h-[1px] bg-border"></span>
+                  <span className="text-muted-foreground text-base px-3">
+                    OR
+                  </span>
+                  <span className="w-full h-[1px] bg-border"></span>
+                </div>
+                {/* //? icons */}
+                <div className="flex w-full items-center justify-center gap-2.5">
+                  <Button
+                    type="button"
+                    variant="onlyIcon"
+                    size="icon"
+                    className="flex flex-1 bg-[#ededed]"
+                  >
+                    <Google className="shrink-0 size-6" />
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="onlyIcon"
+                    size="icon"
+                    className="flex flex-1 bg-[#ededed]"
+                  >
+                    <Github className="shrink-0 size-6" />
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="onlyIcon"
+                    size="icon"
+                    className="flex flex-1 bg-[#5764f2]"
+                  >
+                    <Discord className="shrink-0 size-6" />
+                  </Button>
+                </div>
+              </div>
             </form>
           </Tabs.TabsContent>
+
           {/* //* REGISTER */}
           <Tabs.TabsContent
             value="register"
-            className="border border-border rounded-lg p-8"
+            className="border border-border rounded-[20px] p-10"
           >
-            <form className="flex flex-col w-full h-fit gap-y-2">
-              <h3 className="text-base font-semibold">Create your account</h3>
-              <p className="text-md font-light opacity-85 pb-8">
-                Get started by registering today.{" "}
-              </p>
-              <div className="flex flex-col gap-y-4 pb-6">
-                <Input placeholder="Name" name="email" />
-                <Input placeholder="Surname" name="email" />
-                <Input placeholder="Email Address" name="email" />
-                <Input placeholder="Password" type="password" name="password" />
-
-                <Button>Register</Button>
+            <form
+              onSubmit={(e) => onSubmitHandler(e)}
+              className="flex flex-col w-full h-fit items-center gap-8"
+            >
+              {/* //? logo & title */}
+              <div className="flex flex-col w-full items-center gap-4">
+                <MetaLogo width={54} height={54} />
+                <h3 className="text-4xl font-semibold">Create your account</h3>
+              </div>
+              {/* //? email input */}
+              <div className="flex flex-col w-full gap-3">
+                <label
+                  htmlFor="register-email"
+                  className="text-base text-muted-foreground"
+                >
+                  Email
+                </label>
+                <Input
+                  id="register-email"
+                  placeholder="contactseckin@gmail.com"
+                  name="email"
+                  required
+                  type="email"
+                />
+                <Button type="submit" className="text-base">
+                  Continue
+                </Button>
+              </div>
+              {/* //? OAuth icons */}
+              <div className="flex flex-col w-full items-center gap-8">
+                <div className="flex w-full items-center justify-center">
+                  <span className="w-full h-[1px] bg-border"></span>
+                  <span className="text-muted-foreground text-base px-3">
+                    OR
+                  </span>
+                  <span className="w-full h-[1px] bg-border"></span>
+                </div>
+                {/* //? icons */}
+                <div className="flex w-full items-center justify-center gap-2.5">
+                  <Button
+                    type="button"
+                    variant="onlyIcon"
+                    size="icon"
+                    className="flex flex-1 bg-[#ededed]"
+                  >
+                    <Google className="shrink-0 size-6" />
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="onlyIcon"
+                    size="icon"
+                    className="flex flex-1 bg-[#ededed]"
+                  >
+                    <Github className="shrink-0 size-6" />
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="onlyIcon"
+                    size="icon"
+                    className="flex flex-1 bg-[#5764f2]"
+                  >
+                    <Discord className="shrink-0 size-6" />
+                  </Button>
+                </div>
               </div>
             </form>
           </Tabs.TabsContent>
         </Tabs.Tabs>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }

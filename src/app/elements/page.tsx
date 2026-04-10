@@ -48,9 +48,9 @@ export default function Home() {
             </Breadcrumb.Breadcrumb>
           </section>
           {/* //! Accordion */}
-          <section className="flex flex-col gap-6 border border-border p-6 rounded-xl max-w-[727px]">
+          <section className="flex flex-col w-full max-w-[550px] gap-6 rounded-xl border border-border p-6">
             <h2 className="text-[12.8px]">Accordion</h2>
-            <Accordion.Accordion type="single" collapsible>
+            <Accordion.Accordion type="single" collapsible className="w-full">
               <Accordion.AccordionItem value="1">
                 <Accordion.AccordionTrigger>
                   Is it accessible ?
