@@ -3,6 +3,7 @@
     "json": false,
     "typescriptreact": false,
     "ignore": false,
-    "typescript": false
+    "typescript": false,
+    "prisma": false
   }
 }
