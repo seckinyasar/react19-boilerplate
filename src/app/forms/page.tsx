@@ -1,5 +1,4 @@
 "use client";
-
 import { AuthEmailForm } from "@/components/auth";
 import { Tabs } from "@/components/ui";
 import type { AuthEmailFormValues } from "@/lib/zodSchemas/formSchemas";

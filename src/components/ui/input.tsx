@@ -50,7 +50,7 @@ const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
           placeholder={resolvedPlaceholder}
           className={cn(
             //! Base
-            "flex h-10 w-full min-w-0 rounded-md border border-border bg-transparent px-2 text-base outline-none  ",
+            "flex h-10 w-full min-w-0 rounded-md border border-border bg-transparent px-2 text-base outline-none",
             //? Placeholder
             "placeholder:color-text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
             //? Selection => ctrl a
@@ -61,6 +61,8 @@ const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
             "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[1px]",
             //? Focus-Within
             "",
+            //? For password
+            type === "password" && "pr-12",
             //? Aria
             "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
             //? Autofill
@@ -73,14 +75,14 @@ const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
           <Button
             type="button"
             onClick={() => setShow(!show)}
-            className="absolute right-1 top-1/2 -translate-y-1/2"
+            className="absolute right-0 top-1/2 -translate-y-1/2"
             size="icon"
             variant="onlyIcon"
           >
             {!show ? (
-              <Eye className="size-5 stroke-muted-foreground group-focus-within:stroke-foreground " />
+              <Eye className="size-5 stroke-muted-foreground hover:stroke-foreground outline-none " />
             ) : (
-              <EyeClosed className="size-5 stroke-muted-foreground group-focus-within:stroke-foreground" />
+              <EyeClosed className="size-5 stroke-muted-foreground hover:stroke-foreground" />
             )}
           </Button>
         )}

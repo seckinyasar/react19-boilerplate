@@ -1,5 +1,3 @@
-"use client";
-
 import MetaLogo from "@/components/icons/metalogo";
 import { Button, Input } from "@/components/ui";
 import { cn } from "@/lib/utils";
@@ -7,7 +5,7 @@ import {
   authEmailSchema,
   type AuthEmailFormValues,
 } from "@/lib/zodSchemas/formSchemas";
-import { useState } from "react";
+import { useActionState } from "react";
 import { toast } from "sonner";
 import { ZodError } from "zod";
 import { OAuthProvidersSection } from "./oauth-providers-section";
@@ -19,20 +17,25 @@ type AuthEmailFormProps = {
   onSubmitEmail: (data: AuthEmailFormValues) => void | Promise<void>;
 };
 
+type AuthEmailFormState =
+  | {
+      error?: string;
+    }
+  | undefined;
+
 export function AuthEmailForm({
   title,
   emailInputId,
   className,
   onSubmitEmail,
 }: AuthEmailFormProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const [_, formAction, isPending] = useActionState<
+    AuthEmailFormState,
+    FormData
+  >(async (_prevState: AuthEmailFormState, formData: FormData) => {
     let data: AuthEmailFormValues;
+
     try {
-      const formData = new FormData(e.currentTarget);
       const email = formData.get("email");
       data = authEmailSchema.parse({ email });
     } catch (error) {
@@ -42,25 +45,22 @@ export function AuthEmailForm({
         )?.message;
         toast.error(msg ?? "Enter valid email");
       }
-      return;
+      return { error: "Enter valid email" };
     }
 
-    setIsSubmitting(true);
     try {
       await onSubmitEmail(data);
     } catch {
       toast.error("Something went wrong", {
         description: "Please try again in a moment.",
       });
-    } finally {
-      setIsSubmitting(false);
     }
-  };
+  }, undefined);
 
   return (
     <form
       className={cn("flex flex-col w-full h-fit items-center gap-8", className)}
-      onSubmit={handleSubmit}
+      action={formAction}
     >
       <div className="flex flex-col w-full items-center gap-4">
         <MetaLogo width={54} height={54} />
@@ -84,11 +84,11 @@ export function AuthEmailForm({
         />
         <Button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isPending}
           className="text-base"
-          aria-busy={isSubmitting}
+          aria-busy={isPending}
         >
-          {isSubmitting ? "Please wait…" : "Continue"}
+          {isPending ? "Please wait…" : "Continue"}
         </Button>
       </div>
 

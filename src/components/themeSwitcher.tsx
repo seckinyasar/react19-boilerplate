@@ -17,11 +17,11 @@
  */
 //#endregion
 
+import { cn } from "@/lib/utils";
 import { Moon, SunMedium } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import { cn } from "@/lib/utils";
 
 interface ThemeSwitcherProps {
   navbar?: boolean;
