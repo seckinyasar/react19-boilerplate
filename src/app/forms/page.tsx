@@ -1,6 +1,7 @@
 "use client";
 import { AuthEmailForm } from "@/components/auth";
 import { Tabs } from "@/components/ui";
+import { authClient } from "@/lib/better-auth/auth-client";
 import type { AuthEmailFormValues } from "@/lib/zodSchemas/formSchemas";
 import { toast } from "sonner";
 
@@ -13,6 +14,10 @@ function submitRegister({ email }: AuthEmailFormValues) {
 }
 
 export default function Page() {
+  const { data, isPending, error } = authClient.useSession();
+
+  console.log(data, error);
+
   return (
     <main
       aria-label="Login and Register Page"

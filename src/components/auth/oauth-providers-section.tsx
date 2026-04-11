@@ -4,6 +4,7 @@ import Google from "@/components/icons/google";
 import type { MyIconProps } from "@/components/icons/icon-interface";
 import { Button } from "@/components/ui";
 import type { ComponentType } from "react";
+import { signInWithGoogle } from "@/lib/better-auth/sign-in";
 
 type OAuthProvider = {
   id: string;
@@ -34,6 +35,16 @@ const OAUTH_PROVIDERS: OAuthProvider[] = [
 ];
 
 export function OAuthProvidersSection() {
+  const handleSignInWithGoogle = async (providerId: string) => {
+    switch (providerId) {
+      case "google":
+        await signInWithGoogle();
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <div className="flex flex-col w-full items-center gap-8">
       <div
@@ -55,6 +66,7 @@ export function OAuthProvidersSection() {
             size="icon"
             className={buttonClassName}
             aria-label={label}
+            onClick={() => handleSignInWithGoogle(id)}
           >
             <Icon className="shrink-0 size-6" aria-hidden />
           </Button>
