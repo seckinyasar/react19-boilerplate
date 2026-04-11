@@ -1,5 +1,6 @@
 "use client";
 import { AuthEmailForm } from "@/components/auth";
+import { SessionInfoPanel } from "@/components/auth/session-info-panel";
 import { Tabs } from "@/components/ui";
 import { authClient } from "@/lib/better-auth/auth-client";
 import type { AuthEmailFormValues } from "@/lib/zodSchemas/formSchemas";
@@ -14,9 +15,9 @@ function submitRegister({ email }: AuthEmailFormValues) {
 }
 
 export default function Page() {
-  const { data, isPending, error } = authClient.useSession();
+  const { data } = authClient.useSession();
 
-  console.log(data, error);
+  const showSessionPanel = Boolean(data?.user && data?.session);
 
   return (
     <main
@@ -25,7 +26,7 @@ export default function Page() {
     >
       <section
         aria-label="Login and Register Form"
-        className="flex justify-center w-[600px] h-fit mt-40"
+        className="mt-40 flex h-fit w-[1200px] items-stretch justify-center gap-10"
       >
         <Tabs.Tabs defaultValue="login" className="w-[400px] items-center">
           <Tabs.TabsList>
@@ -55,6 +56,10 @@ export default function Page() {
             />
           </Tabs.TabsContent>
         </Tabs.Tabs>
+
+        {showSessionPanel && data?.session && data.user ? (
+          <SessionInfoPanel session={data.session} user={data.user} />
+        ) : null}
       </section>
     </main>
   );

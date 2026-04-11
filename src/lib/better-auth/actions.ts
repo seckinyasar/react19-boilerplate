@@ -10,4 +10,8 @@ const signInWithGoogle = async () => {
   });
 };
 
-export { signInWithGoogle };
+const signOut = async () => {
+  await authClient.signOut();
+};
+
+export { signInWithGoogle, signOut };

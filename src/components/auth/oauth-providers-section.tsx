@@ -3,8 +3,8 @@ import Github from "@/components/icons/github";
 import Google from "@/components/icons/google";
 import type { MyIconProps } from "@/components/icons/icon-interface";
 import { Button } from "@/components/ui";
+import { signInWithGoogle } from "@/lib/better-auth/actions";
 import type { ComponentType } from "react";
-import { signInWithGoogle } from "@/lib/better-auth/sign-in";
 
 type OAuthProvider = {
   id: string;

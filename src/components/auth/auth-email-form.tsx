@@ -41,7 +41,7 @@ export function AuthEmailForm({
     } catch (error) {
       if (error instanceof ZodError) {
         const msg = error.issues.find(
-          (issue) => issue.path[0] === "email"
+          (issue) => issue.path[0] === "email",
         )?.message;
         toast.error(msg ?? "Enter valid email");
       }
