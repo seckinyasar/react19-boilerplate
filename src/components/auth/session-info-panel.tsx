@@ -68,6 +68,7 @@ export function SessionInfoPanel({
                 width={128}
                 height={128}
                 quality={100}
+                loading="lazy"
                 sizes="128px"
                 className="h-[128px] w-[128px] rounded-full object-cover"
               />
