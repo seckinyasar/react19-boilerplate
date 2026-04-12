@@ -10,8 +10,28 @@ const signInWithGoogle = async () => {
   });
 };
 
+const signInWithGithub = async () => {
+  await authClient.signIn.social({
+    provider: "github",
+    callbackURL: "/forms",
+    errorCallbackURL: "/forms",
+    newUserCallbackURL: "/forms",
+    disableRedirect: false,
+  });
+};
+
+const signInWithDiscord = async () => {
+  await authClient.signIn.social({
+    provider: "discord",
+    callbackURL: "/forms",
+    errorCallbackURL: "/forms",
+    newUserCallbackURL: "/forms",
+    disableRedirect: false,
+  });
+};
+
 const signOut = async () => {
   await authClient.signOut();
 };
 
-export { signInWithGoogle, signOut };
+export { signInWithDiscord, signInWithGithub, signInWithGoogle, signOut };

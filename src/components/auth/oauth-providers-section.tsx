@@ -3,7 +3,11 @@ import Github from "@/components/icons/github";
 import Google from "@/components/icons/google";
 import type { MyIconProps } from "@/components/icons/icon-interface";
 import { Button } from "@/components/ui";
-import { signInWithGoogle } from "@/lib/better-auth/actions";
+import {
+  signInWithDiscord,
+  signInWithGithub,
+  signInWithGoogle,
+} from "@/lib/better-auth/actions";
 import type { ComponentType } from "react";
 
 type OAuthProvider = {
@@ -35,10 +39,16 @@ const OAUTH_PROVIDERS: OAuthProvider[] = [
 ];
 
 export function OAuthProvidersSection() {
-  const handleSignInWithGoogle = async (providerId: string) => {
+  const handleSignInWithProvider = async (providerId: string) => {
     switch (providerId) {
       case "google":
         await signInWithGoogle();
+        break;
+      case "github":
+        await signInWithGithub();
+        break;
+      case "discord":
+        await signInWithDiscord();
         break;
       default:
         break;
@@ -66,7 +76,7 @@ export function OAuthProvidersSection() {
             size="icon"
             className={buttonClassName}
             aria-label={label}
-            onClick={() => handleSignInWithGoogle(id)}
+            onClick={() => handleSignInWithProvider(id)}
           >
             <Icon className="shrink-0 size-6" aria-hidden />
           </Button>
