@@ -2,16 +2,19 @@
 import { AuthEmailForm } from "@/components/auth";
 import { SessionInfoPanel } from "@/components/auth/session-info-panel";
 import { Tabs } from "@/components/ui";
+import { sendMagicLink } from "@/lib/better-auth/actions";
 import { authClient } from "@/lib/better-auth/auth-client";
 import type { AuthEmailFormValues } from "@/lib/zodSchemas/formSchemas";
 import { toast } from "sonner";
 
 function submitLogin({ email }: AuthEmailFormValues) {
-  toast("Submitted values", { description: email });
+  sendMagicLink({ email });
+  toast("Magic link sent to your email", { description: email });
 }
 
 function submitRegister({ email }: AuthEmailFormValues) {
-  toast("Submitted values", { description: email });
+  sendMagicLink({ email });
+  toast("Magic link sent to your email", { description: email });
 }
 
 export default function Page() {

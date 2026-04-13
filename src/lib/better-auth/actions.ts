@@ -30,8 +30,22 @@ const signInWithDiscord = async () => {
   });
 };
 
+//? idk we can get error this way.
+const sendMagicLink = async ({ email }: { email: string }) => {
+  await authClient.signIn.magicLink({
+    email: email,
+    callbackURL: "/forms",
+  });
+};
+
 const signOut = async () => {
   await authClient.signOut();
 };
 
-export { signInWithDiscord, signInWithGithub, signInWithGoogle, signOut };
+export {
+  sendMagicLink,
+  signInWithDiscord,
+  signInWithGithub,
+  signInWithGoogle,
+  signOut,
+};
