@@ -1,10 +1,11 @@
+import type { AppRoutes } from "@root/.next/types/routes";
 import { Component, Cuboid, FilePenLine, Library } from "lucide-react";
 
 export interface HomeMenuProps {
   title: string;
   icon?: React.ReactNode;
   links: {
-    href?: string;
+    href?: AppRoutes;
     label?: string;
     icon?: React.ReactNode;
   }[];

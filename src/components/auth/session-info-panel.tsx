@@ -9,10 +9,10 @@ export function SessionInfoPanel({
 }: {
   session: { token?: string | null; expiresAt?: Date | string | null };
   user: {
-    name?: string | null;
-    email?: string | null;
-    emailVerified?: boolean | null;
-    image?: string | null;
+    name?: string | null | undefined;
+    email?: string | null | undefined;
+    emailVerified?: boolean | null | undefined;
+    image?: string | null | undefined;
   };
 }) {
   const handleSignOut = async () => {
@@ -73,7 +73,7 @@ export function SessionInfoPanel({
                 className="h-[128px] w-[128px] rounded-full object-cover"
               />
             ) : (
-              "—"
+              <div className="mt-4">No image found.</div>
             )}
           </dd>
         </div>

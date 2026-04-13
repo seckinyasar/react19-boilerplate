@@ -1,6 +1,7 @@
 "use client";
 
 import { buttonVariants } from "@/components/ui/button";
+import { AppRoutes } from "@root/.next/types/routes";
 import Link from "next/link";
 import HomeMenu from "./constants/menu-home";
 
@@ -22,7 +23,7 @@ export default function Home() {
               {menu.links.map((link, i) => (
                 <Link
                   key={i}
-                  href={link.href || ""}
+                  href={(link.href as AppRoutes) ?? "/"}
                   className={buttonVariants({
                     variant: "outline",
                     className: "justify-start w-fit",

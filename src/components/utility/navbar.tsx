@@ -15,9 +15,14 @@
 
 import { Home, LucideComponent } from "lucide-react";
 import Link from "next/link";
+import type { AppRoutes } from "../../../.next/types/routes";
 import ThemeSwitcher from "../themeSwitcher";
 
-const pages = [
+const pages: {
+  page: string;
+  href: AppRoutes;
+  icon: typeof Home | typeof LucideComponent;
+}[] = [
   {
     page: "Home",
     href: "/",
