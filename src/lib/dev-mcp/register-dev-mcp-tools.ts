@@ -17,12 +17,13 @@ function jsonText(data: unknown) {
   };
 }
 
-/** Dev MCP araçlarını verilen `McpServer` örneğine kaydeder (`mcp-handler` / manuel transport). */
 export function registerDevMcpTools(server: McpServer): void {
-  server.tool(
+  server.registerTool(
     "project_info",
-    "package.json adı/sürümü ve kullanılan Next.js sürümü (repo kökü).",
-    {},
+    {
+      description:
+        "package.json adı/sürümü ve kullanılan Next.js sürümü (repo kökü).",
+    },
     async () => {
       const nextVersion =
         typeof packageJson.dependencies?.next === "string"
@@ -36,10 +37,11 @@ export function registerDevMcpTools(server: McpServer): void {
     },
   );
 
-  server.tool(
+  server.registerTool(
     "db_health",
-    "PostgreSQL bağlantısını Prisma ile doğrular (SELECT 1).",
-    {},
+    {
+      description: "PostgreSQL bağlantısını Prisma ile doğrular (SELECT 1).",
+    },
     async () => {
       try {
         await prisma.$queryRaw`SELECT 1`;
@@ -53,11 +55,14 @@ export function registerDevMcpTools(server: McpServer): void {
     },
   );
 
-  server.tool(
+  server.registerTool(
     "list_users",
-    "User tablosundan son kayıtları listeler (e-posta dahil; sadece dev).",
     {
-      limit: z.number().int().min(1).max(50).optional().default(20),
+      description:
+        "User tablosundan son kayıtları listeler (e-posta dahil; sadece dev).",
+      inputSchema: {
+        limit: z.number().int().min(1).max(50).optional().default(20),
+      },
     },
     async ({ limit }) => {
       const users = await prisma.user.findMany({
@@ -77,10 +82,12 @@ export function registerDevMcpTools(server: McpServer): void {
     },
   );
 
-  server.tool(
+  server.registerTool(
     "get_user",
-    "ID ile tek kullanıcı döndürür.",
-    { id: z.string().min(1) },
+    {
+      description: "ID ile tek kullanıcı döndürür.",
+      inputSchema: { id: z.string().min(1) },
+    },
     async ({ id }) => {
       const user = await prisma.user.findUnique({
         where: { id },
@@ -98,10 +105,11 @@ export function registerDevMcpTools(server: McpServer): void {
     },
   );
 
-  server.tool(
+  server.registerTool(
     "count_auth_entities",
-    "User, Session ve Account sayıları (hızlı genel bakış).",
-    {},
+    {
+      description: "User, Session ve Account sayıları (hızlı genel bakış).",
+    },
     async () => {
       const [users, sessions, accounts] = await Promise.all([
         prisma.user.count(),
@@ -112,12 +120,15 @@ export function registerDevMcpTools(server: McpServer): void {
     },
   );
 
-  server.tool(
+  server.registerTool(
     "list_sessions",
-    "Session kayıtları (token döndürülmez). İsteğe bağlı userId filtresi.",
     {
-      limit: z.number().int().min(1).max(50).optional().default(20),
-      userId: z.string().optional(),
+      description:
+        "Session kayıtları (token döndürülmez). İsteğe bağlı userId filtresi.",
+      inputSchema: {
+        limit: z.number().int().min(1).max(50).optional().default(20),
+        userId: z.string().optional(),
+      },
     },
     async ({ limit, userId }) => {
       const sessions = await prisma.session.findMany({
@@ -137,12 +148,15 @@ export function registerDevMcpTools(server: McpServer): void {
     },
   );
 
-  server.tool(
+  server.registerTool(
     "list_oauth_accounts",
-    "OAuth hesap özeti (access/refresh token alanları dahil edilmez).",
     {
-      limit: z.number().int().min(1).max(50).optional().default(20),
-      userId: z.string().optional(),
+      description:
+        "OAuth hesap özeti (access/refresh token alanları dahil edilmez).",
+      inputSchema: {
+        limit: z.number().int().min(1).max(50).optional().default(20),
+        userId: z.string().optional(),
+      },
     },
     async ({ limit, userId }) => {
       const accounts = await prisma.account.findMany({
@@ -163,10 +177,12 @@ export function registerDevMcpTools(server: McpServer): void {
     },
   );
 
-  server.tool(
+  server.registerTool(
     "env_keys_set",
-    "validate-env ile tanımlı gerekli env anahtarlarının tanımlı olup olmadığı (değerler yazılmaz).",
-    {},
+    {
+      description:
+        "validate-env ile tanımlı gerekli env anahtarlarının tanımlı olup olmadığı (değerler yazılmaz).",
+    },
     async () => {
       const keys = REQUIRED_ENV_KEYS.map((key) => ({
         key,

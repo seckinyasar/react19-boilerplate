@@ -16,7 +16,7 @@
 import { Home, LucideComponent } from "lucide-react";
 import Link from "next/link";
 import type { AppRoutes } from "../../../.next/types/routes";
-import ThemeSwitcher from "../themeSwitcher";
+import ThemeSwitcher from "./themeSwitcher";
 
 const pages: {
   page: string;

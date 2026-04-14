@@ -1,5 +1,5 @@
 import { Toaster } from "@/components/ui/sonner";
-import Navbar from "@/components/utility/navbar";
+import Navbar from "@/components/common/navbar";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono, Inter } from "next/font/google";

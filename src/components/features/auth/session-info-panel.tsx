@@ -1,7 +1,7 @@
 import { signOut } from "@/lib/better-auth/actions";
 import { formatExpiresAt, highResAvatarUrl } from "@/utils";
 import Image from "next/image";
-import { Button } from "../ui";
+import { Button } from "../../ui";
 
 export function SessionInfoPanel({
   session,
@@ -68,7 +68,7 @@ export function SessionInfoPanel({
                 width={128}
                 height={128}
                 quality={100}
-                loading="lazy"
+                loading="eager"
                 sizes="128px"
                 className="h-[128px] w-[128px] rounded-full object-cover"
               />

@@ -21,7 +21,7 @@ import { cn } from "@/lib/utils";
 import { Moon, SunMedium } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 interface ThemeSwitcherProps {
   navbar?: boolean;
@@ -47,14 +47,14 @@ const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ navbar = false }) => {
         <Moon
           className={cn(
             "size-6 bg-transparent rounded-full stroke-active-svg p-0.5",
-            navbar && "size-5"
+            navbar && "size-5",
           )}
         />
       ) : (
         <SunMedium
           className={cn(
             "size-6 bg-transparent rounded-full stroke-active-svg p-0.5",
-            navbar && "size-5"
+            navbar && "size-5",
           )}
         />
       )}

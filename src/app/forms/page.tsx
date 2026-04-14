@@ -1,6 +1,6 @@
 "use client";
-import { AuthEmailForm } from "@/components/auth";
-import { SessionInfoPanel } from "@/components/auth/session-info-panel";
+import { AuthEmailForm } from "@/components/features/auth/auth-email-form";
+import { SessionInfoPanel } from "@/components/features/auth/session-info-panel";
 import { Tabs } from "@/components/ui";
 import { sendMagicLink } from "@/lib/better-auth/actions";
 import { authClient } from "@/lib/better-auth/auth-client";
