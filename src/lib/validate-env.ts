@@ -2,7 +2,7 @@
  * Required env vars for this app (keep in sync with `.env.example`).
  * Values come from Vercel/host `process.env` — no filesystem `.env` needed at runtime.
  */
-const REQUIRED_ENV_KEYS = [
+export const REQUIRED_ENV_KEYS = [
   "BETTER_AUTH_SECRET",
   "BETTER_AUTH_URL",
   "DATABASE_URL",
