@@ -1,6 +1,7 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
+import { getServerEnv } from "@/env.server";
 import prisma from "@/lib/prisma";
 import { REQUIRED_ENV_KEYS } from "@/lib/validate-env";
 
@@ -184,9 +185,15 @@ export function registerDevMcpTools(server: McpServer): void {
         "validate-env ile tanımlı gerekli env anahtarlarının tanımlı olup olmadığı (değerler yazılmaz).",
     },
     async () => {
-      const keys = REQUIRED_ENV_KEYS.map((key) => ({
+      const env = getServerEnv();
+      const keysToCheck = [
+        ...REQUIRED_ENV_KEYS,
+        "NEON_MCP_TOKEN",
+        "DATABASE_URL_UNPOOLED",
+      ] as const;
+      const keys = keysToCheck.map((key) => ({
         key,
-        set: Boolean(process.env[key]?.trim()),
+        set: Boolean(String(env[key] ?? "").trim()),
       }));
       return jsonText(keys);
     },

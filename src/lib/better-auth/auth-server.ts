@@ -1,10 +1,12 @@
 import prisma from "@/lib/prisma";
+import { getServerEnv } from "@/env.server";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { magicLink } from "better-auth/plugins";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const serverEnv = getServerEnv();
+const resend = new Resend(serverEnv.RESEND_API_KEY);
 
 export const authServer = betterAuth({
   database: prismaAdapter(prisma, {
@@ -28,20 +30,20 @@ export const authServer = betterAuth({
       expiresIn: 5 * 60, // 300 seconds
     }),
   ],
-  secret: process.env.BETTER_AUTH_SECRET,
-  baseURL: process.env.BETTER_AUTH_URL,
+  secret: serverEnv.BETTER_AUTH_SECRET,
+  baseURL: serverEnv.BETTER_AUTH_URL,
   socialProviders: {
     google: {
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: serverEnv.GOOGLE_CLIENT_ID,
+      clientSecret: serverEnv.GOOGLE_CLIENT_SECRET,
     },
     github: {
-      clientId: process.env.GITHUB_CLIENT_ID as string,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+      clientId: serverEnv.GITHUB_CLIENT_ID,
+      clientSecret: serverEnv.GITHUB_CLIENT_SECRET,
     },
     discord: {
-      clientId: process.env.DISCORD_CLIENT_ID as string,
-      clientSecret: process.env.DISCORD_CLIENT_SECRET as string,
+      clientId: serverEnv.DISCORD_CLIENT_ID,
+      clientSecret: serverEnv.DISCORD_CLIENT_SECRET,
     },
   },
 });

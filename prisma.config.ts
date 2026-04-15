@@ -7,6 +7,9 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    url: process.env["DATABASE_URL"]!,
+    url: process.env["DATABASE_URL_UNPOOLED"]!,
   },
 });
+
+//? prisma.config.ts is only for Prisma CLI, not for the application.
+//? So we use the unpooled database URL.

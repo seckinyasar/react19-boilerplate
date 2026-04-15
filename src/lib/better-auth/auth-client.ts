@@ -1,8 +1,10 @@
 import { magicLinkClient } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
 
+import { clientEnv } from "@/env.client";
+
 export const authClient = createAuthClient({
-  baseURL: process.env.BETTER_AUTH_URL as string,
+  baseURL: clientEnv.NEXT_PUBLIC_APP_URL,
   plugins: [magicLinkClient()],
 });
 
