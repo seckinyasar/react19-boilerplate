@@ -11,7 +11,8 @@ export const serverEnvSchema = z.object({
   GITHUB_CLIENT_SECRET: z.string().min(32),
   DISCORD_CLIENT_ID: z.string().min(1),
   DISCORD_CLIENT_SECRET: z.string().min(32),
-  RESEND_API_KEY: z.string().min(32),
+  RESEND_API_KEY: z.string().min(32).optional(),
+  RESEND_FROM_EMAIL: z.email().default("onboarding@resend.dev"),
 });
 
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
@@ -32,5 +33,4 @@ export const REQUIRED_SERVER_ENV_KEYS = [
   "GITHUB_CLIENT_SECRET",
   "DISCORD_CLIENT_ID",
   "DISCORD_CLIENT_SECRET",
-  "RESEND_API_KEY",
 ] as const satisfies readonly (keyof ServerEnv)[];

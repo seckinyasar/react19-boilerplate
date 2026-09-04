@@ -23,7 +23,7 @@ const HomeMenu: HomeMenuProps[] = [
       },
       {
         href: "/forms",
-        label: "Login / Register Form",
+        label: "Sign in / Sign up",
         icon: <FilePenLine className="size-3.5 ml-2" />,
       },
     ],
