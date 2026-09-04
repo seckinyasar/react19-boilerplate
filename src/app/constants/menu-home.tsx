@@ -20,11 +20,6 @@ const HomeMenu: HomeMenuProps[] = [
         label: "Elements",
         icon: <Component className="size-3.5 ml-2" />,
       },
-      {
-        href: "/forms",
-        label: "Login / Register Form",
-        icon: <FilePenLine className="size-3.5 ml-2" />,
-      },
     ],
   },
   {

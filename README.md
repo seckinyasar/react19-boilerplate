@@ -9,7 +9,7 @@ It is designed to kickstart my frontend tasks. It will be regularly updated with
 1. Install dependencies:
 
    ```bash
-   npm i
+   npm install
    ```
 
 2. Run the development server:
@@ -17,6 +17,24 @@ It is designed to kickstart my frontend tasks. It will be regularly updated with
    ```bash
    npm run dev
    ```
+
+## To Contribute
+
+Contributions that make this boilerplate more useful are always welcome.
+
+### What can you contribute?
+
+- **UI & styling** — New components, layouts, themes, and Tailwind CSS patterns
+- **Animations & Motion** — Smooth transitions, interactive effects, and Motion-based experiences
+- **Accessibility & UX** — Keyboard support, focus management, responsive behavior, and usability improvements
+- **Reusable patterns** — Clean examples that can be adapted across different projects
+
+### Contribution guidelines
+
+- Keep components reusable and easy to customize
+- Follow the existing Tailwind CSS and Motion setup
+- Make sure new examples are responsive and accessible
+- Keep the implementation focused and include a clear description in your pull request
 
 ## Dependencies
 
@@ -47,11 +65,3 @@ The project includes the following dependencies:
   }
 }
 ```
-
-## To-Do / Next Steps
-
-The following tasks are planned for future updates (sourced from `notes.md`):
-
-### Style
-
-- [ ] Sonner hover state can have better morphing.
