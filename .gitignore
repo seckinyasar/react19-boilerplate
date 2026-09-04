@@ -20,6 +20,9 @@
 # production
 /build
 
+# generated
+/generated
+
 # misc
 .DS_Store
 *.pem
@@ -33,10 +36,6 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 !.env.example
-
-# mcp
-.mcp.json
-mcp.json
 
 # vercel
 .vercel
