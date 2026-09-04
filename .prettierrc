@@ -1,15 +1,13 @@
 {
-  "prettier.printWidth": 80,
-  "prettier.tabWidth": 5,
-  "prettier.Tabs": false,
-  "prettier.semi": true,
-  "prettier.singleQuote": true,
-  "prettier.trailingComma": "none",
+  "printWidth": 120,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "none",
   "proseWrap": "preserve",
   "htmlWhitespaceSensitivity": "ignore",
   "jsxSingleQuote": false,
   "bracketSpacing": true,
-  "bracketSameLine": false,
-  "jsxBracketSameLine": false,
   "arrowParens": "always"
 }
