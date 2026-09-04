@@ -12,11 +12,6 @@ export const serverEnvSchema = z.object({
   DISCORD_CLIENT_ID: z.string().min(1),
   DISCORD_CLIENT_SECRET: z.string().min(32),
   RESEND_API_KEY: z.string().min(32),
-  NEON_MCP_TOKEN: z.string().min(32).optional(),
-  ENABLE_DEV_MCP: z.preprocess(
-    (v) => (v === undefined || v === "" ? "true" : v),
-    z.enum(["true", "false"]),
-  ),
 });
 
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
