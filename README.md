@@ -8,15 +8,15 @@ It is designed to kickstart my frontend tasks. It will be regularly updated with
 
 1. Install dependencies:
 
-   ```bash
-   npm install
-   ```
+```bash
+ npm install
+```
 
 2. Run the development server:
 
-   ```bash
-   npm run dev
-   ```
+```bash
+ npm run dev
+```
 
 ## To Contribute
 
@@ -35,6 +35,41 @@ Contributions that make this boilerplate more useful are always welcome.
 - Follow the existing Tailwind CSS and Motion setup
 - Make sure new examples are responsive and accessible
 - Keep the implementation focused and include a clear description in your pull request
+
+## Required environment variables
+
+Before starting the development server, copy `.env.example` to `.env.local` and fill in the values:
+
+```bash
+cp .env.example .env.local
+```
+
+The environment variables used by the project are:
+
+```env
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+
+BETTER_AUTH_SECRET=your-secret-key
+BETTER_AUTH_URL=http://localhost:3000
+
+DATABASE_URL="postgresql://user:pass@ep-xxx-pooler.region.aws.neon.tech/neondb?sslmode=require"
+DATABASE_URL_UNPOOLED="postgresql://user:pass@ep-xxx.region.aws.neon.tech/neondb?sslmode=require"
+
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+
+GITHUB_CLIENT_ID=your-github-client-id
+GITHUB_CLIENT_SECRET=your-github-client-secret
+
+DISCORD_CLIENT_ID=your-discord-client-id
+DISCORD_CLIENT_SECRET=your-discord-client-secret
+
+# Optional: enables Better Auth Magic Link email delivery.
+RESEND_API_KEY=your-resend-api-key
+RESEND_FROM_EMAIL=your-verified-sender@example.com
+```
+
+`RESEND_API_KEY` and `RESEND_FROM_EMAIL` are only required when Magic Link email delivery is enabled.
 
 ## Dependencies
 
