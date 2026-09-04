@@ -45,3 +45,4 @@ yarn-error.log*
 next-env.d.ts
 
 notes.md
+/generated/prisma
