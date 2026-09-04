@@ -1,22 +1,10 @@
 # Security Policy
 
-## Supported Versions
-
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | 🧑‍🦳_check_mark: |
-| 5.0.x   | 🥊:                |
-| 4.0.x   | 💮_check_mark: |
-| < 4.0   | 🪓:                |
-| < 5.0   | ⚫_check_mark: |
+This is a boilerplate project under active development. No specific version support guarantee is provided.
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+Please do not report security vulnerabilities through public issues.
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+Use GitHub's private vulnerability reporting:
+https://github.com/seckinyasar/react19-boilerplate/security/advisories/new
