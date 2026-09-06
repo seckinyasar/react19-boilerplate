@@ -4,6 +4,7 @@ import {
   Breadcrumb,
   Button,
   CheckboxWithText,
+  Dialog,
   Input,
   Textarea,
 } from "@/components/ui";
@@ -101,6 +102,34 @@ export default function Home() {
               >
                 Click Me
               </Button>
+            </div>
+          </section>
+          {/* //! Dialog */}
+          <section className="flex flex-col gap-6 border border-border p-6 rounded-xl">
+            <h2 className="text-[12.8px]">Dialog</h2>
+            <div className="flex items-center justify-center">
+              <Dialog.Dialog>
+                <Dialog.DialogTrigger asChild>
+                  <Button>Open Dialog</Button>
+                </Dialog.DialogTrigger>
+                <Dialog.DialogContent>
+                  <Dialog.DialogHeader>
+                    <Dialog.DialogTitle>Delete project?</Dialog.DialogTitle>
+                    <Dialog.DialogDescription>
+                      This action cannot be undone. The project and its data
+                      will be permanently removed.
+                    </Dialog.DialogDescription>
+                  </Dialog.DialogHeader>
+                  <Dialog.DialogFooter>
+                    <Dialog.DialogClose asChild>
+                      <Button variant="outline">Cancel</Button>
+                    </Dialog.DialogClose>
+                    <Dialog.DialogClose asChild>
+                      <Button variant="destructive">Delete</Button>
+                    </Dialog.DialogClose>
+                  </Dialog.DialogFooter>
+                </Dialog.DialogContent>
+              </Dialog.Dialog>
             </div>
           </section>
         </div>

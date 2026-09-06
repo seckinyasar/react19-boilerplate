@@ -2,6 +2,7 @@ import * as Accordion from "./accordion";
 import * as Breadcrumb from "./breadcrumb";
 import { Button } from "./button";
 import { Checkbox, CheckboxWithText } from "./checkbox";
+import * as Dialog from "./dialog";
 import { Input } from "./input";
 import { Toaster } from "./sonner";
 import * as Tabs from "./tabs";
@@ -12,6 +13,7 @@ export {
   Button,
   Checkbox,
   CheckboxWithText,
+  Dialog,
   Input,
   Tabs,
   Textarea,
