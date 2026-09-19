@@ -1,11 +1,6 @@
-import type { MyIconProps } from "./icon-interface";
+import type { MyIconProps } from './icon-interface'
 
-function Discord({
-  width = 24,
-  height = 24,
-  fill = "#ffffff",
-  ...props
-}: MyIconProps) {
+function Discord({ width = 24, height = 24, fill = '#ffffff', ...props }: MyIconProps) {
   return (
     <svg
       width={width}
@@ -23,8 +18,8 @@ function Discord({
         />
       </g>
     </svg>
-  );
+  )
 }
 
-Discord.displayName = "Discord";
-export default Discord;
+Discord.displayName = 'Discord'
+export default Discord

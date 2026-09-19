@@ -1,11 +1,11 @@
-import { magicLinkClient } from "better-auth/client/plugins";
-import { createAuthClient } from "better-auth/react";
+import { magicLinkClient } from 'better-auth/client/plugins'
+import { createAuthClient } from 'better-auth/react'
 
-import { clientEnv } from "@/env.client";
+import { clientEnv } from '@/env.client'
 
 export const authClient = createAuthClient({
   baseURL: clientEnv.NEXT_PUBLIC_APP_URL,
-  plugins: [magicLinkClient()],
-});
+  plugins: [magicLinkClient()]
+})
 
-export const { signIn, signOut, useSession, getSession } = authClient;
+export const { signIn, signOut, useSession, getSession } = authClient

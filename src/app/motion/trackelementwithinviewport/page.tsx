@@ -1,29 +1,29 @@
-"use client";
+'use client'
 
-import { motion, useMotionValueEvent, useScroll } from "motion/react";
-import { useRef } from "react";
+import { motion, useMotionValueEvent, useScroll } from 'motion/react'
+import { useRef } from 'react'
 const UseScrollExample = () => {
-  const refFirstDiv = useRef(null);
-  const refSecondDiv = useRef(null);
-  const refMain = useRef(null);
+  const refFirstDiv = useRef(null)
+  const refSecondDiv = useRef(null)
+  const refMain = useRef(null)
   const { scrollYProgress: firstDivProgress } = useScroll({
-    target: refFirstDiv,
-  });
+    target: refFirstDiv
+  })
   const { scrollYProgress: secondDivProgress } = useScroll({
-    target: refSecondDiv,
-  });
+    target: refSecondDiv
+  })
   const { scrollYProgress: refMainProgress } = useScroll({
-    target: refMain,
-  });
-  useMotionValueEvent(firstDivProgress, "change", (latest) => {
-    console.log("page scroll: ", latest);
-  });
-  useMotionValueEvent(secondDivProgress, "change", (latest) => {
-    console.log("page scroll second : ", latest);
-  });
-  useMotionValueEvent(refMainProgress, "change", (latest) => {
-    console.log("main scroll : ", latest);
-  });
+    target: refMain
+  })
+  useMotionValueEvent(firstDivProgress, 'change', (latest) => {
+    console.log('page scroll: ', latest)
+  })
+  useMotionValueEvent(secondDivProgress, 'change', (latest) => {
+    console.log('page scroll second : ', latest)
+  })
+  useMotionValueEvent(refMainProgress, 'change', (latest) => {
+    console.log('main scroll : ', latest)
+  })
 
   return (
     <motion.div
@@ -44,6 +44,6 @@ const UseScrollExample = () => {
         className="container-center items-center h-screen bg-white rounded-4xl"
       ></motion.div>
     </motion.div>
-  );
-};
-export default UseScrollExample;
+  )
+}
+export default UseScrollExample

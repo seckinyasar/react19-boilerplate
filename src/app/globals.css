@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -91,8 +91,8 @@
 }
 
 :root {
-  --font-geist-sans: "Geist Sans", sans-serif;
-  --font-geist-mono: "Geist Mono", monospace;
+  --font-geist-sans: 'Geist Sans', sans-serif;
+  --font-geist-mono: 'Geist Mono', monospace;
   --background: oklch(1 0 none);
   --foreground: oklch(0.145 0 0);
   --primary: oklch(0 0 none);
@@ -116,7 +116,7 @@
   --text-muted-foreground: oklch(0.81 0 none);
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   --background: oklch(0.1822 0 0);
   --foreground: oklch(0.985 0 0);
   --primary: oklch(0.922 0 0);

@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 //#region //? References
 /**
@@ -17,49 +17,39 @@
  */
 //#endregion
 
-import { cn } from "@/lib/utils";
-import { Moon, SunMedium } from "lucide-react";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
-import { Button } from "../ui/button";
+import { cn } from '@/lib/utils'
+import { Moon, SunMedium } from 'lucide-react'
+import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
+import { Button } from '../ui/button'
 
 interface ThemeSwitcherProps {
-  navbar?: boolean;
+  navbar?: boolean
 }
 
 const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ navbar = false }) => {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState<boolean>(false);
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState<boolean>(false)
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
 
-  if (!mounted) return null;
+  if (!mounted) return null
 
   return (
     <Button
-      variant={navbar ? "onlyIcon" : "outline"}
-      size={navbar ? "navbar" : "default"}
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      variant={navbar ? 'onlyIcon' : 'outline'}
+      size={navbar ? 'navbar' : 'default'}
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
-      {theme === "dark" ? (
-        <Moon
-          className={cn(
-            "size-6 bg-transparent rounded-full stroke-active-svg p-0.5",
-            navbar && "size-5",
-          )}
-        />
+      {theme === 'dark' ? (
+        <Moon className={cn('size-6 bg-transparent rounded-full stroke-active-svg p-0.5', navbar && 'size-5')} />
       ) : (
-        <SunMedium
-          className={cn(
-            "size-6 bg-transparent rounded-full stroke-active-svg p-0.5",
-            navbar && "size-5",
-          )}
-        />
+        <SunMedium className={cn('size-6 bg-transparent rounded-full stroke-active-svg p-0.5', navbar && 'size-5')} />
       )}
     </Button>
-  );
-};
+  )
+}
 
-export default ThemeSwitcher;
+export default ThemeSwitcher

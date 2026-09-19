@@ -11,29 +11,29 @@ description: Configure multi-tenant organizations, manage members and invitation
 4. Verify: check that organization, member, invitation tables exist in your database
 
 ```ts
-import { betterAuth } from "better-auth";
-import { organization } from "better-auth/plugins";
+import { betterAuth } from 'better-auth'
+import { organization } from 'better-auth/plugins'
 
 export const auth = betterAuth({
   plugins: [
     organization({
       allowUserToCreateOrganization: true,
       organizationLimit: 5, // Max orgs per user
-      membershipLimit: 100, // Max members per org
-    }),
-  ],
-});
+      membershipLimit: 100 // Max members per org
+    })
+  ]
+})
 ```
 
 ### Client-Side Setup
 
 ```ts
-import { createAuthClient } from "better-auth/client";
-import { organizationClient } from "better-auth/client/plugins";
+import { createAuthClient } from 'better-auth/client'
+import { organizationClient } from 'better-auth/client/plugins'
 
 export const authClient = createAuthClient({
-  plugins: [organizationClient()],
-});
+  plugins: [organizationClient()]
+})
 ```
 
 ## Creating Organizations
@@ -43,12 +43,12 @@ The creator is automatically assigned the `owner` role.
 ```ts
 const createOrg = async () => {
   const { data, error } = await authClient.organization.create({
-    name: "My Company",
-    slug: "my-company",
-    logo: "https://example.com/logo.png",
-    metadata: { plan: "pro" },
-  });
-};
+    name: 'My Company',
+    slug: 'my-company',
+    logo: 'https://example.com/logo.png',
+    metadata: { plan: 'pro' }
+  })
+}
 ```
 
 ### Controlling Organization Creation
@@ -58,13 +58,13 @@ Restrict who can create organizations based on user attributes:
 ```ts
 organization({
   allowUserToCreateOrganization: async (user) => {
-    return user.emailVerified === true;
+    return user.emailVerified === true
   },
   organizationLimit: async (user) => {
     // Premium users get more organizations
-    return user.plan === "premium" ? 20 : 3;
-  },
-});
+    return user.plan === 'premium' ? 20 : 3
+  }
+})
 ```
 
 ### Creating Organizations on Behalf of Users
@@ -74,15 +74,14 @@ Administrators can create organizations for other users (server-side only):
 ```ts
 await auth.api.createOrganization({
   body: {
-    name: "Client Organization",
-    slug: "client-org",
-    userId: "user-id-who-will-be-owner", // `userId` is required
-  },
-});
+    name: 'Client Organization',
+    slug: 'client-org',
+    userId: 'user-id-who-will-be-owner' // `userId` is required
+  }
+})
 ```
 
 **Note**: The `userId` parameter cannot be used alongside session headers.
-
 
 ## Active Organizations
 
@@ -91,9 +90,9 @@ Stored in the session and scopes subsequent API calls. Set after user selects on
 ```ts
 const setActive = async (organizationId: string) => {
   const { data, error } = await authClient.organization.setActive({
-    organizationId,
-  });
-};
+    organizationId
+  })
+}
 ```
 
 Many endpoints use the active organization when `organizationId` is not provided (`listMembers`, `listInvitations`, `inviteMember`, etc.).
@@ -107,11 +106,11 @@ Use `getFullOrganization()` to retrieve the active org with all members, invitat
 ```ts
 await auth.api.addMember({
   body: {
-    userId: "user-id",
-    role: "member",
-    organizationId: "org-id",
-  },
-});
+    userId: 'user-id',
+    role: 'member',
+    organizationId: 'org-id'
+  }
+})
 ```
 
 For client-side member additions, use the invitation system instead.
@@ -121,11 +120,11 @@ For client-side member additions, use the invitation system instead.
 ```ts
 await auth.api.addMember({
   body: {
-    userId: "user-id",
-    role: ["admin", "moderator"],
-    organizationId: "org-id",
-  },
-});
+    userId: 'user-id',
+    role: ['admin', 'moderator'],
+    organizationId: 'org-id'
+  }
+})
 ```
 
 ### Removing Members
@@ -141,12 +140,12 @@ Use `updateMemberRole({ memberId, role })`.
 ```ts
 organization({
   membershipLimit: async (user, organization) => {
-    if (organization.metadata?.plan === "enterprise") {
-      return 1000;
+    if (organization.metadata?.plan === 'enterprise') {
+      return 1000
     }
-    return 50;
-  },
-});
+    return 50
+  }
+})
 ```
 
 ## Invitations
@@ -154,15 +153,15 @@ organization({
 ### Setting Up Invitation Emails
 
 ```ts
-import { betterAuth } from "better-auth";
-import { organization } from "better-auth/plugins";
-import { sendEmail } from "./email";
+import { betterAuth } from 'better-auth'
+import { organization } from 'better-auth/plugins'
+import { sendEmail } from './email'
 
 export const auth = betterAuth({
   plugins: [
     organization({
       sendInvitationEmail: async (data) => {
-        const { email, organization, inviter, invitation } = data;
+        const { email, organization, inviter, invitation } = data
 
         await sendEmail({
           to: email,
@@ -172,31 +171,31 @@ export const auth = betterAuth({
             <a href="https://yourapp.com/accept-invite?id=${invitation.id}">
               Accept Invitation
             </a>
-          `,
-        });
-      },
-    }),
-  ],
-});
+          `
+        })
+      }
+    })
+  ]
+})
 ```
 
 ### Sending Invitations
 
 ```ts
 await authClient.organization.inviteMember({
-  email: "newuser@example.com",
-  role: "member",
-});
+  email: 'newuser@example.com',
+  role: 'member'
+})
 ```
 
 ### Shareable Invitation URLs
 
 ```ts
 const { data } = await authClient.organization.getInvitationURL({
-  email: "newuser@example.com",
-  role: "member",
-  callbackURL: "https://yourapp.com/dashboard",
-});
+  email: 'newuser@example.com',
+  role: 'member',
+  callbackURL: 'https://yourapp.com/dashboard'
+})
 
 // Share data.url via any channel
 ```
@@ -209,8 +208,8 @@ This endpoint does not call `sendInvitationEmail` — handle delivery yourself.
 organization({
   invitationExpiresIn: 60 * 60 * 24 * 7, // 7 days (default: 48 hours)
   invitationLimit: 100, // Max pending invitations per org
-  cancelPendingInvitationsOnReInvite: true, // Cancel old invites when re-inviting
-});
+  cancelPendingInvitationsOnReInvite: true // Cancel old invites when re-inviting
+})
 ```
 
 ## Roles & Permissions
@@ -221,8 +220,8 @@ Default roles: `owner` (full access), `admin` (manage members/invitations/settin
 
 ```ts
 const { data } = await authClient.organization.hasPermission({
-  permission: "member:write",
-});
+  permission: 'member:write'
+})
 
 if (data?.hasPermission) {
   // User can manage members
@@ -236,25 +235,25 @@ Use `checkRolePermission({ role, permissions })` for client-side UI rendering (s
 ### Enabling Teams
 
 ```ts
-import { organization } from "better-auth/plugins";
+import { organization } from 'better-auth/plugins'
 
 export const auth = betterAuth({
   plugins: [
     organization({
-        teams: {
-            enabled: true
-        }
-    }),
-  ],
-});
+      teams: {
+        enabled: true
+      }
+    })
+  ]
+})
 ```
 
 ### Creating Teams
 
 ```ts
 const { data } = await authClient.organization.createTeam({
-  name: "Engineering",
-});
+  name: 'Engineering'
+})
 ```
 
 ### Managing Team Members
@@ -268,11 +267,11 @@ Set active team with `setActiveTeam({ teamId })`.
 ```ts
 organization({
   teams: {
-      maximumTeams: 20, // Max teams per org
-      maximumMembersPerTeam: 50, // Max members per team
-      allowRemovingAllTeams: false, // Prevent removing last team
+    maximumTeams: 20, // Max teams per org
+    maximumMembersPerTeam: 50, // Max members per team
+    allowRemovingAllTeams: false // Prevent removing last team
   }
-});
+})
 ```
 
 ## Dynamic Access Control
@@ -280,30 +279,30 @@ organization({
 ### Enabling Dynamic Access Control
 
 ```ts
-import { organization } from "better-auth/plugins";
-import { dynamicAccessControl } from "@better-auth/organization/addons";
+import { organization } from 'better-auth/plugins'
+import { dynamicAccessControl } from '@better-auth/organization/addons'
 
 export const auth = betterAuth({
   plugins: [
     organization({
-        dynamicAccessControl: {
-            enabled: true
-        }
-    }),
-  ],
-});
+      dynamicAccessControl: {
+        enabled: true
+      }
+    })
+  ]
+})
 ```
 
 ### Creating Custom Roles
 
 ```ts
 await authClient.organization.createRole({
-  role: "moderator",
+  role: 'moderator',
   permission: {
-    member: ["read"],
-    invitation: ["read"],
-  },
-});
+    member: ['read'],
+    invitation: ['read']
+  }
+})
 ```
 
 Use `updateRole({ roleId, permission })` and `deleteRole({ roleId })`. Pre-defined roles (owner, admin, member) cannot be deleted. Roles assigned to members cannot be deleted until reassigned.
@@ -321,31 +320,31 @@ organization({
         return {
           data: {
             ...data,
-            metadata: { ...data.metadata, createdBy: user.id },
-          },
-        };
+            metadata: { ...data.metadata, createdBy: user.id }
+          }
+        }
       },
       afterCreate: async ({ organization, member }) => {
         // Post-creation logic (e.g., send welcome email, create default resources)
-        await createDefaultResources(organization.id);
+        await createDefaultResources(organization.id)
       },
       beforeDelete: async ({ organization }) => {
         // Cleanup before deletion
-        await archiveOrganizationData(organization.id);
-      },
+        await archiveOrganizationData(organization.id)
+      }
     },
     member: {
       afterCreate: async ({ member, organization }) => {
-        await notifyAdmins(organization.id, `New member joined`);
-      },
+        await notifyAdmins(organization.id, `New member joined`)
+      }
     },
     invitation: {
       afterCreate: async ({ invitation, organization, inviter }) => {
-        await logInvitation(invitation);
-      },
-    },
-  },
-});
+        await logInvitation(invitation)
+      }
+    }
+  }
+})
 ```
 
 ## Schema Customization
@@ -356,31 +355,31 @@ Customize table names, field names, and add additional fields:
 organization({
   schema: {
     organization: {
-      modelName: "workspace", // Rename table
+      modelName: 'workspace', // Rename table
       fields: {
-        name: "workspaceName", // Rename fields
+        name: 'workspaceName' // Rename fields
       },
       additionalFields: {
         billingId: {
-          type: "string",
-          required: false,
-        },
-      },
+          type: 'string',
+          required: false
+        }
+      }
     },
     member: {
       additionalFields: {
         department: {
-          type: "string",
-          required: false,
+          type: 'string',
+          required: false
         },
         title: {
-          type: "string",
-          required: false,
-        },
-      },
-    },
-  },
-});
+          type: 'string',
+          required: false
+        }
+      }
+    }
+  }
+})
 ```
 
 ## Security Considerations
@@ -396,9 +395,9 @@ Always ensure ownership transfer before removing the current owner:
 ```ts
 // Transfer ownership first
 await authClient.organization.updateMemberRole({
-  memberId: "new-owner-member-id",
-  role: "owner",
-});
+  memberId: 'new-owner-member-id',
+  role: 'owner'
+})
 
 // Then the previous owner can be demoted or removed
 ```
@@ -409,8 +408,8 @@ Deleting an organization removes all associated data (members, invitations, team
 
 ```ts
 organization({
-  disableOrganizationDeletion: true, // Disable via config
-});
+  disableOrganizationDeletion: true // Disable via config
+})
 ```
 
 Or implement soft delete via hooks:
@@ -421,12 +420,12 @@ organization({
     organization: {
       beforeDelete: async ({ organization }) => {
         // Archive instead of delete
-        await archiveOrganization(organization.id);
-        throw new Error("Organization archived, not deleted");
-      },
-    },
-  },
-});
+        await archiveOrganization(organization.id)
+        throw new Error('Organization archived, not deleted')
+      }
+    }
+  }
+})
 ```
 
 ### Invitation Security
@@ -438,9 +437,9 @@ organization({
 ## Complete Configuration Example
 
 ```ts
-import { betterAuth } from "better-auth";
-import { organization } from "better-auth/plugins";
-import { sendEmail } from "./email";
+import { betterAuth } from 'better-auth'
+import { organization } from 'better-auth/plugins'
+import { sendEmail } from './email'
 
 export const auth = betterAuth({
   plugins: [
@@ -449,10 +448,10 @@ export const auth = betterAuth({
       allowUserToCreateOrganization: true,
       organizationLimit: 10,
       membershipLimit: 100,
-      creatorRole: "owner",
+      creatorRole: 'owner',
 
       // Slugs
-      defaultOrganizationIdField: "slug",
+      defaultOrganizationIdField: 'slug',
 
       // Invitations
       invitationExpiresIn: 60 * 60 * 24 * 7, // 7 days
@@ -461,19 +460,19 @@ export const auth = betterAuth({
         await sendEmail({
           to: data.email,
           subject: `Join ${data.organization.name}`,
-          html: `<a href="https://app.com/invite/${data.invitation.id}">Accept</a>`,
-        });
+          html: `<a href="https://app.com/invite/${data.invitation.id}">Accept</a>`
+        })
       },
 
       // Hooks
       hooks: {
         organization: {
           afterCreate: async ({ organization }) => {
-            console.log(`Organization ${organization.name} created`);
-          },
-        },
-      },
-    }),
-  ],
-});
+            console.log(`Organization ${organization.name} created`)
+          }
+        }
+      }
+    })
+  ]
+})
 ```

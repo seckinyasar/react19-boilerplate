@@ -1,19 +1,8 @@
-import type { MyIconProps } from "./icon-interface";
+import type { MyIconProps } from './icon-interface'
 
-function Github({
-  width = 24,
-  height = 24,
-  fill = "#000000",
-  ...props
-}: MyIconProps) {
+function Github({ width = 24, height = 24, fill = '#000000', ...props }: MyIconProps) {
   return (
-    <svg
-      width={width}
-      height={height}
-      viewBox="0 0 20 20"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
+    <svg width={width} height={height} viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" {...props}>
       <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
         <g transform="translate(-140.000000, -7559.000000)" fill={fill}>
           <g transform="translate(56.000000, 160.000000)">
@@ -22,8 +11,8 @@ function Github({
         </g>
       </g>
     </svg>
-  );
+  )
 }
 
-Github.displayName = "Github";
-export default Github;
+Github.displayName = 'Github'
+export default Github

@@ -1,4 +1,4 @@
-import type { MyIconProps } from "./icon-interface";
+import type { MyIconProps } from './icon-interface'
 
 function Google({ width = 24, height = 24, ...props }: MyIconProps) {
   return (
@@ -27,8 +27,8 @@ function Google({ width = 24, height = 24, ...props }: MyIconProps) {
         fill="#EB4335"
       />
     </svg>
-  );
+  )
 }
 
-Google.displayName = "Google";
-export default Google;
+Google.displayName = 'Google'
+export default Google

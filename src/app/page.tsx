@@ -1,9 +1,9 @@
-"use client";
+'use client'
 
-import { buttonVariants } from "@/components/ui/button";
-import { AppRoutes } from "@root/.next/types/routes";
-import Link from "next/link";
-import HomeMenu from "./constants/menu-home";
+import { buttonVariants } from '@/components/ui/button'
+import { AppRoutes } from '@root/.next/types/routes'
+import Link from 'next/link'
+import HomeMenu from './constants/menu-home'
 
 export default function Home() {
   return (
@@ -23,13 +23,13 @@ export default function Home() {
               {menu.links.map((link, i) => (
                 <Link
                   key={i}
-                  href={(link.href as AppRoutes) ?? "/"}
+                  href={(link.href as AppRoutes) ?? '/'}
                   className={buttonVariants({
-                    variant: "outline",
-                    className: "justify-start w-fit",
+                    variant: 'outline',
+                    className: 'justify-start w-fit'
                   })}
                 >
-                  {link.label || ""}
+                  {link.label || ''}
                   {link.icon && link.icon}
                 </Link>
               ))}
@@ -38,5 +38,5 @@ export default function Home() {
         ))}
       </div>
     </div>
-  );
+  )
 }

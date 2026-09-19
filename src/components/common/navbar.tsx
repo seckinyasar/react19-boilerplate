@@ -13,27 +13,27 @@
  */
 //#endregion
 
-import { Home, LucideComponent } from "lucide-react";
-import Link from "next/link";
-import type { AppRoutes } from "../../../.next/types/routes";
-import ThemeSwitcher from "./themeSwitcher";
+import { Home, LucideComponent } from 'lucide-react'
+import Link from 'next/link'
+import type { AppRoutes } from '../../../.next/types/routes'
+import ThemeSwitcher from './themeSwitcher'
 
 const pages: {
-  page: string;
-  href: AppRoutes;
-  icon: typeof Home | typeof LucideComponent;
+  page: string
+  href: AppRoutes
+  icon: typeof Home | typeof LucideComponent
 }[] = [
   {
-    page: "Home",
-    href: "/",
-    icon: Home,
+    page: 'Home',
+    href: '/',
+    icon: Home
   },
   {
-    page: "forms",
-    href: "/reactflow",
-    icon: LucideComponent,
-  },
-];
+    page: 'forms',
+    href: '/reactflow',
+    icon: LucideComponent
+  }
+]
 
 export default function Navbar() {
   return (
@@ -51,5 +51,5 @@ export default function Navbar() {
         <ThemeSwitcher navbar />
       </div>
     </div>
-  );
+  )
 }

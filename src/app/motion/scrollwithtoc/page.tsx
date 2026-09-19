@@ -1,14 +1,14 @@
-"use client";
-import TableOfContents from "@/components/widgets/TableOfContents";
-import { motion } from "motion/react";
+'use client'
+import TableOfContents from '@/components/widgets/TableOfContents'
+import { motion } from 'motion/react'
 export default function Page() {
   const contents = [
-    { text: "Scroll Animation", id: "Article 1" },
-    { text: "First Example ", id: "Article 2" },
-    { text: "With InView prop", id: "Article 3" },
-    { text: "And testing table of contents", id: "Article 4" },
-    { text: "With intersection observer api", id: "Article 5" },
-  ];
+    { text: 'Scroll Animation', id: 'Article 1' },
+    { text: 'First Example ', id: 'Article 2' },
+    { text: 'With InView prop', id: 'Article 3' },
+    { text: 'And testing table of contents', id: 'Article 4' },
+    { text: 'With intersection observer api', id: 'Article 5' }
+  ]
 
   return (
     <div className="flex w-full min-h-screen justify-center bg-background text-foreground py-20 relative">
@@ -23,11 +23,12 @@ export default function Page() {
             transition={{ duration: 3 }}
             key={index}
             id={item.id}
-            className="flex w-full max-w-1/3 items-center justify-center bg-gray-400 h-[600px] border border-border rounded-4xl text-black mb-4">
+            className="flex w-full max-w-1/3 items-center justify-center bg-gray-400 h-[600px] border border-border rounded-4xl text-black mb-4"
+          >
             {item.text}
           </motion.div>
         ))}
       </div>
     </div>
-  );
+  )
 }

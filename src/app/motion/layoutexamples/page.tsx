@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils'
 import {
   Blocks,
   ChevronDown,
@@ -11,100 +11,88 @@ import {
   List,
   MessageCircleIcon,
   MessageSquare,
-  User,
-} from "lucide-react";
-import {
-  AnimatePresence,
-  motion,
-  Transition,
-  useMotionValueEvent,
-  useScroll,
-} from "motion/react";
-import Image from "next/image";
-import { useRef, useState } from "react";
+  User
+} from 'lucide-react'
+import { AnimatePresence, motion, Transition, useMotionValueEvent, useScroll } from 'motion/react'
+import Image from 'next/image'
+import { useRef, useState } from 'react'
 
 const Test = () => {
-  const mainDivRef = useRef(null);
-  const firstDiv = useRef(null);
+  const mainDivRef = useRef(null)
+  const firstDiv = useRef(null)
 
-  const [crossed, setCrossed] = useState(false);
-  const [showPeople, setShowPeople] = useState(false);
-  const [viewState, setViewState] = useState<View>("List");
+  const [crossed, setCrossed] = useState(false)
+  const [showPeople, setShowPeople] = useState(false)
+  const [viewState, setViewState] = useState<View>('List')
 
   //#region //* Hooks
   const { scrollYProgress: firstDivProgress } = useScroll({
     target: firstDiv,
-    offset: ["0", "0.1"], // Top of target (0) aligns with middle of container (0.5)
-  });
+    offset: ['0', '0.1'] // Top of target (0) aligns with middle of container (0.5)
+  })
 
-  useMotionValueEvent(firstDivProgress, "change", () => {
-    setCrossed(firstDivProgress.get() >= 1);
-    console.log(firstDivProgress);
-  });
+  useMotionValueEvent(firstDivProgress, 'change', () => {
+    setCrossed(firstDivProgress.get() >= 1)
+    console.log(firstDivProgress)
+  })
 
   //#endregion
 
-  type View = "List" | "Card" | "Pack";
+  type View = 'List' | 'Card' | 'Pack'
 
   const SvgArray = [
     {
-      id: "1",
-      src: "/fish.svg",
+      id: '1',
+      src: '/fish.svg',
       // icon: FishSVG,
-      name: "Fish",
+      name: 'Fish',
       price: [
         {
-          price: "0.332",
-          currency: "BTC",
-        },
+          price: '0.332',
+          currency: 'BTC'
+        }
       ],
-      number: "300",
+      number: '300'
     },
     {
-      id: "2",
-      src: "/milk.svg",
+      id: '2',
+      src: '/milk.svg',
       // icon: MilkSVG,
-      name: "Milk",
+      name: 'Milk',
       price: [
         {
-          price: "0.262",
-          currency: "BTC",
-        },
+          price: '0.262',
+          currency: 'BTC'
+        }
       ],
-      number: "200",
+      number: '200'
     },
     {
-      id: "3",
-      src: "/steak.svg",
+      id: '3',
+      src: '/steak.svg',
       // icon: SteakSVG,
-      name: "Steak",
+      name: 'Steak',
       price: [
         {
-          price: "0.512",
-          currency: "BTC",
-        },
+          price: '0.512',
+          currency: 'BTC'
+        }
       ],
-      number: "100",
-    },
-  ];
+      number: '100'
+    }
+  ]
 
   const TRANSITION: Transition = {
     duration: 0.5,
-    type: "spring",
+    type: 'spring',
     bounce: 0.05,
-    ease: "easeInOut",
-  };
+    ease: 'easeInOut'
+  }
 
   return (
-    <div
-      ref={mainDivRef}
-      className="flex flex-col w-full h-[400vh] bg-background items-center relative"
-    >
+    <div ref={mainDivRef} className="flex flex-col w-full h-[400vh] bg-background items-center relative">
       {/* //* Message Section */}
-      <div
-        className="flex flex-col w-full h-[100vh] items-center"
-        ref={firstDiv}
-      >
+      <div className="flex flex-col w-full h-[100vh] items-center" ref={firstDiv}>
         {!crossed && (
           <motion.div
             key="message-box"
@@ -115,8 +103,7 @@ const Test = () => {
             className="w-[400px] h-[200px] border border-gray-600 rounded-4xl flex flex-col items-center p-10"
           >
             <div className="text-center m-auto">
-              Condition is : scrollYProgress is greater than this div's y
-              position
+              Condition is : scrollYProgress is greater than this div's y position
             </div>
           </motion.div>
         )}
@@ -125,7 +112,7 @@ const Test = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.35, ease: "easeIn" }}
+            transition={{ duration: 0.35, ease: 'easeIn' }}
             layoutId="message"
             className="fixed bottom-10 right-10"
           >
@@ -142,24 +129,18 @@ const Test = () => {
           <div className="flex flex-col flex-1">
             <button
               onClick={() => {
-                setShowPeople(!showPeople);
+                setShowPeople(!showPeople)
               }}
               className="flex w-full h-10 items-center px-3 rounded-md  justify-between hover:bg-[rgba(37,37,37,0.2)] "
             >
               <div className="flex text-[15px] space-x-2 items-center">
                 <User className="size-5" />
                 <div>People</div>
-                <div className="size-4 rounded-full bg-gray-600 text-xs items-center flex justify-center">
-                  25
-                </div>
+                <div className="size-4 rounded-full bg-gray-600 text-xs items-center flex justify-center">25</div>
               </div>
               <div className="flex items-center gap-1">
-                {showPeople ? "Hide" : "Show"}
-                {showPeople ? (
-                  <ChevronUp className="size-4" />
-                ) : (
-                  <ChevronDown className="size-4" />
-                )}
+                {showPeople ? 'Hide' : 'Show'}
+                {showPeople ? <ChevronUp className="size-4" /> : <ChevronDown className="size-4" />}
               </div>
             </button>
             {/* //! Animation Part */}
@@ -170,12 +151,10 @@ const Test = () => {
                   John Doe
                 </div>
                 <MessageSquare className="size-5" />
-              </section>{" "}
+              </section>{' '}
               <motion.section
                 initial={{ y: -40 }}
-                animate={
-                  showPeople ? { y: 0, scaleX: 1 } : { y: -40, scaleX: 0.9 }
-                }
+                animate={showPeople ? { y: 0, scaleX: 1 } : { y: -40, scaleX: 0.9 }}
                 className="flex w-full h-10 px-2.5 rounded-md border border-border justify-between items-center bg-background z-30"
               >
                 <div className="flex text-[15px] gap-x-2 items-center">
@@ -183,12 +162,10 @@ const Test = () => {
                   John Doe
                 </div>
                 <MessageSquare className="size-5" />
-              </motion.section>{" "}
+              </motion.section>{' '}
               <motion.section
                 initial={{ y: -40 }}
-                animate={
-                  showPeople ? { y: 0, scaleX: 1 } : { y: -80, scaleX: 0.8 }
-                }
+                animate={showPeople ? { y: 0, scaleX: 1 } : { y: -80, scaleX: 0.8 }}
                 className="flex w-full h-10 px-2.5 rounded-md border border-border justify-between items-center"
               >
                 <div className="flex text-[15px] gap-x-2 items-center">
@@ -206,18 +183,13 @@ const Test = () => {
       <main className="flex w-full h-[100vh] justify-center py-30 text-base">
         <div className="flex flex-col flex-1 items-center max-w-md ">
           {/* //* Buttons */}
-          <motion.div
-            layout
-            className="flex space-x-4 pb-6 border-b-[0.1px] border-border "
-          >
+          <motion.div layout className="flex space-x-4 pb-6 border-b-[0.1px] border-border ">
             <motion.button
               layoutId="buttons"
-              onClick={() => setViewState("List")}
-              className={cn(
-                "flex w-[140px] h-10  rounded-4xl items-center justify-center  gap-x-1.5 "
-              )}
+              onClick={() => setViewState('List')}
+              className={cn('flex w-[140px] h-10  rounded-4xl items-center justify-center  gap-x-1.5 ')}
               style={{
-                backgroundColor: viewState === "List" ? "#117fff" : "#333333",
+                backgroundColor: viewState === 'List' ? '#117fff' : '#333333'
               }}
             >
               <List className="size-4" />
@@ -225,12 +197,10 @@ const Test = () => {
             </motion.button>
             <motion.button
               layoutId="buttons"
-              onClick={() => setViewState("Card")}
-              className={cn(
-                "flex w-[140px] h-10  rounded-4xl items-center justify-center  gap-x-1.5"
-              )}
+              onClick={() => setViewState('Card')}
+              className={cn('flex w-[140px] h-10  rounded-4xl items-center justify-center  gap-x-1.5')}
               style={{
-                backgroundColor: viewState === "Card" ? "#117fff" : "#333333",
+                backgroundColor: viewState === 'Card' ? '#117fff' : '#333333'
               }}
             >
               <Blocks className="size-4" />
@@ -238,12 +208,10 @@ const Test = () => {
             </motion.button>
             <motion.button
               layoutId="buttons"
-              onClick={() => setViewState("Pack")}
-              className={cn(
-                "flex w-[140px] h-10  rounded-4xl items-center justify-center  gap-x-1.5 "
-              )}
+              onClick={() => setViewState('Pack')}
+              className={cn('flex w-[140px] h-10  rounded-4xl items-center justify-center  gap-x-1.5 ')}
               style={{
-                backgroundColor: viewState === "Pack" ? "#117fff" : "#333333",
+                backgroundColor: viewState === 'Pack' ? '#117fff' : '#333333'
               }}
             >
               <FileStack className="size-4" />
@@ -253,7 +221,7 @@ const Test = () => {
 
           {/* //! Views */}
           <AnimatePresence mode="popLayout">
-            {viewState === "List" && (
+            {viewState === 'List' && (
               <div className="flex h-full w-full pt-6 text-gray-400">
                 <div className="flex flex-col flex-1 gap-y-4">
                   {SvgArray.map((item, i) => (
@@ -261,40 +229,24 @@ const Test = () => {
                       <motion.div
                         layoutId={item.id}
                         style={{
-                          backgroundColor: "#404040",
-                          borderRadius: "12px",
+                          backgroundColor: '#404040',
+                          borderRadius: '12px'
                         }}
                       >
-                        <Image
-                          src={item.src}
-                          width={75}
-                          height={75}
-                          alt="test"
-                          key={item.id}
-                        />
+                        <Image src={item.src} width={75} height={75} alt="test" key={item.id} />
                       </motion.div>
 
-                      <motion.section
-                        layoutId={item.name}
-                        className="flex flex-col justify-center"
-                      >
-                        <div className="ml-3 text-[15px] font-semibold text-amber-50">
-                          {item.name}
-                        </div>
+                      <motion.section layoutId={item.name} className="flex flex-col justify-center">
+                        <div className="ml-3 text-[15px] font-semibold text-amber-50">{item.name}</div>
                         {item.price.map((price) => (
                           <div className="space-x-1 ml-3" key={price.price}>
-                            <span className="text-amber-50 font-semibold">
-                              {price.price}
-                            </span>
+                            <span className="text-amber-50 font-semibold">{price.price}</span>
                             <span>{price.currency}</span>
                           </div>
                         ))}
                       </motion.section>
                       <section className="flex items-center justify-end w-full">
-                        <motion.div
-                          style={{ width: "20px", height: "20px" }}
-                          layoutId={item.number + 1}
-                        >
+                        <motion.div style={{ width: '20px', height: '20px' }} layoutId={item.number + 1}>
                           <Hash className="size-full " />
                         </motion.div>
                         <motion.span layoutId={item.number} className="text-lg">
@@ -306,7 +258,7 @@ const Test = () => {
                 </div>
               </div>
             )}
-            {viewState === "Card" && (
+            {viewState === 'Card' && (
               <section className="flex h-full w-full pt-6 text-gray-400">
                 <div className="flex flex-wrap justify-between">
                   {SvgArray.map((item) => (
@@ -314,8 +266,8 @@ const Test = () => {
                       <motion.div
                         layoutId={item.id}
                         style={{
-                          backgroundColor: "#404040",
-                          borderRadius: "12px",
+                          backgroundColor: '#404040',
+                          borderRadius: '12px'
                         }}
                       >
                         <Image
@@ -324,35 +276,22 @@ const Test = () => {
                           src={item.src}
                           height={200}
                           width={200}
-                          style={{ borderRadius: "12px" }}
+                          style={{ borderRadius: '12px' }}
                         />
                       </motion.div>
 
-                      <motion.section
-                        layoutId={item.name}
-                        className="flex flex-col flex-1 px-1 py-2"
-                      >
-                        <span className="text-[15px] font-semibold text-white">
-                          {item.name}
-                        </span>
+                      <motion.section layoutId={item.name} className="flex flex-col flex-1 px-1 py-2">
+                        <span className="text-[15px] font-semibold text-white">{item.name}</span>
                         <div className="flex w-full justify-between">
                           {item.price.map((price) => (
                             <div className="flex w-full" key={price.price}>
-                              <span className="font-semibold  text-amber-50 mr-1">
-                                {price.price}
-                              </span>
+                              <span className="font-semibold  text-amber-50 mr-1">{price.price}</span>
                               <span>{price.currency}</span>
                               <div className="flex ml-auto">
-                                <motion.div
-                                  layoutId={item.number + 1}
-                                  style={{ width: "20px", height: "20px" }}
-                                >
+                                <motion.div layoutId={item.number + 1} style={{ width: '20px', height: '20px' }}>
                                   <Hash className="size-full " />
                                 </motion.div>
-                                <motion.span
-                                  layoutId={item.number}
-                                  className="text-lg"
-                                >
+                                <motion.span layoutId={item.number} className="text-lg">
                                   {item.number}
                                 </motion.span>
                               </div>
@@ -366,7 +305,7 @@ const Test = () => {
               </section>
             )}
 
-            {viewState === "Pack" && (
+            {viewState === 'Pack' && (
               <main className="flex h-full w-full pt-6 text-gray-400">
                 <main className="flex flex-col flex-1 items-center">
                   {/* //! CARDS */}
@@ -377,20 +316,15 @@ const Test = () => {
                           key={item.id}
                           layoutId={item.id}
                           style={{
-                            backgroundColor: "#404040",
-                            borderRadius: "12px",
-                            position: "absolute",
+                            backgroundColor: '#404040',
+                            borderRadius: '12px',
+                            position: 'absolute',
                             rotate: i * 20,
                             x: i * 50,
-                            y: i * 30,
+                            y: i * 30
                           }}
                         >
-                          <Image
-                            alt={item.name}
-                            src={item.src}
-                            height={100}
-                            width={200}
-                          />
+                          <Image alt={item.name} src={item.src} height={100} width={200} />
                         </motion.div>
                       ))}
                     </div>
@@ -407,7 +341,7 @@ const Test = () => {
         </div>
       </main>
     </div>
-  );
-};
+  )
+}
 
-export default Test;
+export default Test

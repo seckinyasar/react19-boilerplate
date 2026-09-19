@@ -1,11 +1,11 @@
-"use client";
-import { useEffect, useState } from "react";
+'use client'
+import { useEffect, useState } from 'react'
 
 interface TableOfContentsProps {
-  list: { id: string; text: string }[];
+  list: { id: string; text: string }[]
 }
 const TableOfContents = ({ list }: TableOfContentsProps) => {
-  const [activeIndex, setActiveIndex] = useState("");
+  const [activeIndex, setActiveIndex] = useState('')
   //#region //* Functions
   //? tracking active index
   useEffect(() => {
@@ -13,35 +13,35 @@ const TableOfContents = ({ list }: TableOfContentsProps) => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveIndex(entry.target.id);
+            setActiveIndex(entry.target.id)
           }
-        });
+        })
       },
       {
         threshold: 0.5,
-        rootMargin: "-10% 0px -40% 0px",
+        rootMargin: '-10% 0px -40% 0px'
       }
-    );
+    )
 
-    const headers = document.querySelectorAll("div[id]");
-    headers.forEach((header) => observer.observe(header));
+    const headers = document.querySelectorAll('div[id]')
+    headers.forEach((header) => observer.observe(header))
 
-    return () => headers.forEach((header) => observer.unobserve(header));
-  }, []);
+    return () => headers.forEach((header) => observer.unobserve(header))
+  }, [])
 
   const onClickHandler = (id: string) => {
-    const element = document.getElementById(id);
+    const element = document.getElementById(id)
     if (element) {
-      console.log(element);
-      console.log(id);
+      console.log(element)
+      console.log(id)
       element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+        behavior: 'smooth',
+        block: 'start'
+      })
     } else {
-      alert("there is no element");
+      alert('there is no element')
     }
-  };
+  }
 
   //#endregion
 
@@ -54,16 +54,17 @@ const TableOfContents = ({ list }: TableOfContentsProps) => {
             key={item.id}
             onClick={() => onClickHandler(item.id)}
             className={`text-base pb-3 opacity-50 hover:cursor-pointer  ${
-              activeIndex === item.id ? "opacity-100" : "opacity-50"
-            }`}>
+              activeIndex === item.id ? 'opacity-100' : 'opacity-50'
+            }`}
+          >
             {item.text}
           </div>
         ))}
       </div>
     </div>
-  );
-};
-export default TableOfContents;
+  )
+}
+export default TableOfContents
 
 //? lets test with no ids on maps. it shouldn't throw eslint error on react19.
 

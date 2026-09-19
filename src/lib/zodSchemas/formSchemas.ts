@@ -1,10 +1,10 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 const authEmailSchema = z.object({
-  email: z.email("Enter valid email"),
-});
+  email: z.email('Enter valid email')
+})
 
-type AuthEmailFormValues = z.infer<typeof authEmailSchema>;
+type AuthEmailFormValues = z.infer<typeof authEmailSchema>
 
-export { authEmailSchema };
-export type { AuthEmailFormValues };
+export { authEmailSchema }
+export type { AuthEmailFormValues }

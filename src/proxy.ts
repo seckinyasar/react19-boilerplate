@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest } from 'next/server'
 export async function proxy(request: NextRequest) {
   // const sessionCookie = getSessionCookie(request);
   // if (!sessionCookie) {
@@ -8,8 +8,8 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
-};
+  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)']
+}
 
 //? RECOMMENDED APPROACH
 //? this only checks cookie exits, auth control will be done in the relevant page.

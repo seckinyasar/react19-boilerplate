@@ -12,12 +12,12 @@
  * - `ring-offset` => focus state ring offset (`TabsTrigger`, `TabsContent`)
  */
 //#endregion
-"use client";
-import { cn } from "@/lib/utils";
-import * as TabsPrimitive from "@radix-ui/react-tabs";
-import * as React from "react";
+'use client'
+import { cn } from '@/lib/utils'
+import * as TabsPrimitive from '@radix-ui/react-tabs'
+import * as React from 'react'
 
-const Tabs = TabsPrimitive.Root;
+const Tabs = TabsPrimitive.Root
 
 const TabsList = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,
@@ -27,15 +27,15 @@ const TabsList = React.forwardRef<
     ref={ref}
     className={cn(
       //! Base
-      "h-10 w-full rounded-md bg-transparent p-1",
+      'h-10 w-full rounded-md bg-transparent p-1',
       //? Functionality
-      "inline-flex items-center justify-center text-muted-foreground",
+      'inline-flex items-center justify-center text-muted-foreground',
       className
     )}
     {...props}
   />
-));
-TabsList.displayName = TabsPrimitive.List.displayName;
+))
+TabsList.displayName = TabsPrimitive.List.displayName
 
 const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
@@ -45,21 +45,21 @@ const TabsTrigger = React.forwardRef<
     ref={ref}
     className={cn(
       //! Base
-      "rounded-md h-10 text-base font-medium min-w-[200px] bg-black/40 ",
+      'rounded-md h-10 text-base font-medium min-w-[200px] bg-black/40 ',
       //? Functionality
-      "inline-flex items-center justify-center whitespace-nowrap transition-all",
+      'inline-flex items-center justify-center whitespace-nowrap transition-all',
       //? Focus
-      "ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+      'ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
       //? Disabled
-      "disabled:pointer-events-none disabled:opacity-50",
+      'disabled:pointer-events-none disabled:opacity-50',
       //? Active State
-      "data-[state=active]:bg-[#25282F] data-[state=active]:text-foreground data-[state=active]:shadow",
+      'data-[state=active]:bg-[#25282F] data-[state=active]:text-foreground data-[state=active]:shadow',
       className
     )}
     {...props}
   />
-));
-TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
+))
+TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
 
 const TabsContent = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Content>,
@@ -69,14 +69,14 @@ const TabsContent = React.forwardRef<
     ref={ref}
     className={cn(
       //! Base
-      "mt-2",
+      'mt-2',
       //? Focus
-      "ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+      'ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
       className
     )}
     {...props}
   />
-));
-TabsContent.displayName = TabsPrimitive.Content.displayName;
+))
+TabsContent.displayName = TabsPrimitive.Content.displayName
 
-export { Tabs, TabsContent, TabsList, TabsTrigger };
+export { Tabs, TabsContent, TabsList, TabsTrigger }

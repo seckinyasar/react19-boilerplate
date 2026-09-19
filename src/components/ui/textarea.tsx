@@ -15,35 +15,35 @@
  */
 //#endregion
 
-import * as React from "react";
-import { cn } from "@/lib/utils";
+import * as React from 'react'
+import { cn } from '@/lib/utils'
 
-function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
+function Textarea({ className, ...props }: React.ComponentProps<'textarea'>) {
   return (
     <textarea
       data-slot="textarea"
       className={cn(
         //! Base
-        "flex min-h-16 max-h-32 w-full rounded-sm border border-input bg-transparent px-3 py-2 text-base outline-none transition-[color,box-shadow]",
+        'flex min-h-16 max-h-32 w-full rounded-sm border border-input bg-transparent px-3 py-2 text-base outline-none transition-[color,box-shadow]',
         //? Placeholder
-        "placeholder:text-muted-foreground",
+        'placeholder:text-muted-foreground',
         //? Focus
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[2px]",
+        'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[2px]',
         //? Disabled
-        "disabled:cursor-not-allowed disabled:opacity-50",
+        'disabled:cursor-not-allowed disabled:opacity-50',
         //? Functionality
-        "shrink-0 grow-0",
+        'shrink-0 grow-0',
         //? Responsive
-        "",
+        '',
         //? Field Sizing
-        "field-sizing-content",
+        'field-sizing-content',
         //* Aria
-        "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+        'aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive',
         className
       )}
       {...props}
     />
-  );
+  )
 }
 
-export { Textarea };
+export { Textarea }

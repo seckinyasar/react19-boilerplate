@@ -1,13 +1,6 @@
-"use client";
-import {
-  Accordion,
-  Breadcrumb,
-  Button,
-  CheckboxWithText,
-  Input,
-  Textarea,
-} from "@/components/ui";
-import { toast } from "sonner";
+'use client'
+import { Accordion, Breadcrumb, Button, CheckboxWithText, Input, Textarea } from '@/components/ui'
+import { toast } from 'sonner'
 
 export default function Home() {
   return (
@@ -40,9 +33,7 @@ export default function Home() {
                 </Breadcrumb.BreadcrumbItem>
                 <Breadcrumb.BreadcrumbSeparator />
                 <Breadcrumb.BreadcrumbItem>
-                  <Breadcrumb.BreadcrumbLink>
-                    Current Page
-                  </Breadcrumb.BreadcrumbLink>
+                  <Breadcrumb.BreadcrumbLink>Current Page</Breadcrumb.BreadcrumbLink>
                 </Breadcrumb.BreadcrumbItem>
               </Breadcrumb.BreadcrumbList>
             </Breadcrumb.Breadcrumb>
@@ -52,28 +43,21 @@ export default function Home() {
             <h2 className="text-[12.8px]">Accordion</h2>
             <Accordion.Accordion type="single" collapsible className="w-full">
               <Accordion.AccordionItem value="1">
-                <Accordion.AccordionTrigger>
-                  Is it accessible ?
-                </Accordion.AccordionTrigger>
+                <Accordion.AccordionTrigger>Is it accessible ?</Accordion.AccordionTrigger>
                 <Accordion.AccordionContent>
-                  {" "}
+                  {' '}
                   Yes. It adheres to the WAI-ARIA design pattern.
                 </Accordion.AccordionContent>
               </Accordion.AccordionItem>
               <Accordion.AccordionItem value="2">
-                <Accordion.AccordionTrigger>
-                  How does this work ?
-                </Accordion.AccordionTrigger>
+                <Accordion.AccordionTrigger>How does this work ?</Accordion.AccordionTrigger>
                 <Accordion.AccordionContent>
-                  {" "}
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Nulla, unde repudiandae excepturi odio suscipit, quo ipsa
-                  accusantium sit aspernatur, placeat fugiat molestiae nihil
-                  voluptatum. Quaerat necessitatibus vel mollitia magni nemo.
-                  Perferendis consequatur sapiente, vero tempora eligendi atque
-                  ex! Aliquid, modi! Laborum atque odit illo ab eius magni hic
-                  reprehenderit quod ad maxime voluptas quibusdam neque
-                  accusamus, iure nesciunt pariatur a.
+                  {' '}
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, unde repudiandae excepturi odio
+                  suscipit, quo ipsa accusantium sit aspernatur, placeat fugiat molestiae nihil voluptatum. Quaerat
+                  necessitatibus vel mollitia magni nemo. Perferendis consequatur sapiente, vero tempora eligendi atque
+                  ex! Aliquid, modi! Laborum atque odit illo ab eius magni hic reprehenderit quod ad maxime voluptas
+                  quibusdam neque accusamus, iure nesciunt pariatur a.
                 </Accordion.AccordionContent>
               </Accordion.AccordionItem>
             </Accordion.Accordion>
@@ -88,14 +72,14 @@ export default function Home() {
               <Button
                 variant="default"
                 onClick={() =>
-                  toast("Test", {
-                    description: "Testing the sonner component",
+                  toast('Test', {
+                    description: 'Testing the sonner component',
                     action: {
-                      label: "Undo",
+                      label: 'Undo',
                       onClick: () => {
-                        console.log("Undo");
-                      },
-                    },
+                        console.log('Undo')
+                      }
+                    }
                   })
                 }
               >
@@ -106,5 +90,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-  );
+  )
 }
